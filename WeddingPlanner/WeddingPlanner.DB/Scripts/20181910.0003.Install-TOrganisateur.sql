@@ -1,9 +1,10 @@
-create table test.tOrganisateur
+create table weddingplanner.tOrganisateur
 (
-    Id_user int not null,
-    Id_event int not null,  
-    Type_user  bit 
+    OrganisateurId int identity(0, 1),
+    UserId int not null,
+    EventId int not null,
 
-     constraint FK_tOrganisateur_tUsers foreign key(Id_user) references test.tUsers(User_id),
-     constraint FK_tOrganisateur_tEvent foreign key(Id_event) references test.tEvent(Id_event),
+     constraint PK_tOrganisateur primary key(OrganisateurId),
+     constraint FK_tOrganisateur_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId),
+     constraint FK_tOrganisateur_tEvent foreign key(EventId) references weddingplanner.tEvent(EventId),
 );

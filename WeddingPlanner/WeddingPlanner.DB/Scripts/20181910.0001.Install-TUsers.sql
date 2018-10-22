@@ -1,19 +1,20 @@
-create table test.tUsers
+create table weddingplanner.tUsers
 (
-    User_id int identity(0, 1),
+    UserId int identity(0, 1),
     FirstName nvarchar(32) not null,
     LastName  nvarchar(32) not null,
-    Place nvarchar(32) not null,
-    Maximum_price nvarchar(32) not null,
-    Number_of_guestes nvarchar(32) not null,
-    Mail nvarchar(32) not null,
+    Place nvarchar(32) null,
+    MaximumPrice nvarchar(32) null,
+    NumberOfGuestes nvarchar(32) null,
+    Note nvarchar(32) null,
+    Email nvarchar(32) not null,
     Password nvarchar(32) not null,
-    Wedding_date datetime2 null,
-    Wedding_date datetime2 null,
+    WeddingDate datetime2 null,
+    UserType  bit 
 
 
-    constraint PK_tUsers primary key(User_id),
-    constraint UK_tUsers_FirstName_LastName unique(FirstName, LastName),
+    constraint PK_tUsers primary key(UserId),
+    constraint UK_tUser_Email unique(Email),
     constraint CK_tUsers_FirstName check(FirstName <> N''),
     constraint CK_tUsers_LastName check(LastName <> N''),
 );

@@ -1,8 +1,10 @@
-create table test.tEvent
+create table weddingplanner.tEvent
 (
-    Id_event int identity(0, 1),
-    Name_event nvarchar(50) not null,
+    EventId int identity(0, 1),
+    UserId int not null,
+    OrganisateurId int null,
 
-    constraint PK_tEvent primary key(Id_event)
+    constraint PK_tEvent primary key(EventId),
+    constraint FK_tEvent_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId),
 
 );
