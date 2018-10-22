@@ -1,9 +1,9 @@
-create table weddingplanner.tPasswordUser
+create table weddingplanner.tPassword
 (
     UserId     int,
     [Password] varbinary(128) not null,
 
-    constraint PK_tPasswordUser primary key(UserId),
-    constraint FK_tPasswordUser_UserId foreign key(UserId) references weddingplanner.tUsers(UserId)
+    constraint PK_tPassword primary key(UserId),
+    constraint FK_tPassword_UserId foreign key(UserId) references weddingplanner.tUsers(UserId)
 );
 
