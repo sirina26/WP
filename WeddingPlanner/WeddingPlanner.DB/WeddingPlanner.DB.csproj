@@ -9,6 +9,7 @@
     </ItemGroup>
     <ItemGroup>
         <None Remove="appsettings.json" />
+        <None Remove="Scripts\20181910.0005.Install-TPassword.sql" />
     </ItemGroup>
 
     <ItemGroup>
