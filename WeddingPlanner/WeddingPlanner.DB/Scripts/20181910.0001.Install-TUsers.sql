@@ -8,12 +8,13 @@ create table weddingplanner.tUsers
     NumberOfGuestes nvarchar(32) null,
     Note nvarchar(32) null,
     Email nvarchar(32) not null,
+    PhoneNumber nvarchar(32) not null,
     WeddingDate datetime2 null,
-    UserType  bit 
+    UserType  bit,
 
 
     constraint PK_tUsers primary key(UserId),
     constraint UK_tUser_Email unique(Email),
     constraint CK_tUsers_FirstName check(FirstName <> N''),
-    constraint CK_tUsers_LastName check(LastName <> N''),
+    constraint CK_tUsers_LastName check(LastName <> N'')
 );
