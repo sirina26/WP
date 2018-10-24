@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using WeddingPlanner.DAL;
+using WeddingPlanner.WebApp.Services;
+using Microsoft.AspNetCore.Authentication.OAuth;
 
 namespace WeddingPlanner.WebApp.Authentication
 {
-    public class GoogleAuthenticationManager
-    {: AuthenticationManager<GoogleUserInfo>
+    public class GoogleAuthenticationManager : AuthenticationManager<GoogleUserInfo>
     {
         readonly UserGateway _userGateway;
 
