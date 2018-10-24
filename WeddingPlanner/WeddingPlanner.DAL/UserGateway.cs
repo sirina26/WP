@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 namespace WeddingPlanner.DAL
 {
-    class UserGateway
+    public class UserGateway
     {
         readonly string _connectionString;
 
@@ -19,42 +19,19 @@ namespace WeddingPlanner.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                //corriger la requette sql
                 return await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.UserId = @UserId",
+                    "select u.UserId, u.Email, u.[Password] from weddingplanner.vUsers u where u.UserId = @UserId",
                     new { UserId = userId } );
             }
         }
-
-        
 
         public async Task<UserData> FindByEmail( string email )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.Email = @Email",
+                    "select u.UserId, u.Email,u.[Password] from weddingplanner.vUsers u where u.Email = @Email",
                     new { Email = email } );
-            }
-        }
-
-        public async Task<UserData> FindByGoogleId( string googleId )
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                return await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.GoogleId = @GoogleId",
-                    new { GoogleId = googleId } );
-            }
-        }
-
-        public async Task<UserData> FindByGithubId( int githubId )
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                return await con.QueryFirstOrDefaultAsync<UserData>(
-                    "select u.UserId, u.Email, u.[Password], u.GithubAccessToken, u.GoogleRefreshToken, u.GoogleId, u.GithubId from iti.vUser u where u.GithubId = @GithubId",
-                    new { GithubId = githubId } );
             }
         }
 
@@ -67,7 +44,7 @@ namespace WeddingPlanner.DAL
                 p.Add( "@Password", password );
                 p.Add( "@UserId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
-                await con.ExecuteAsync( "iti.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
+                await con.ExecuteAsync( "weddingplanner.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
 
                 int status = p.Get<int>( "@Status" );
                 if( status == 1 ) return Result.Failure<int>( Status.BadRequest, "An account with this email already exists." );
@@ -75,29 +52,7 @@ namespace WeddingPlanner.DAL
                 Debug.Assert( status == 0 );
                 return Result.Success( p.Get<int>( "@UserId" ) );
             }
-        }
-
-        public async Task CreateOrUpdateGithubUser( string email, int githubId, string accessToken )
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                await con.ExecuteAsync(
-                    "iti.sGithubUserCreateOrUpdate",
-                    new { Email = email, GithubId = githubId, AccessToken = accessToken },
-                    commandType: CommandType.StoredProcedure );
-            }
-        }
-
-        public async Task CreateOrUpdateGoogleUser( string email, string googleId, string refreshToken )
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                await con.ExecuteAsync(
-                    "iti.sGoogleUserCreateOrUpdate",
-                    new { Email = email, GoogleId = googleId, RefreshToken = refreshToken },
-                    commandType: CommandType.StoredProcedure );
-            }
-        }
+        }        
 
         public async Task<IEnumerable<string>> GetAuthenticationProviders( string userId )
         {
