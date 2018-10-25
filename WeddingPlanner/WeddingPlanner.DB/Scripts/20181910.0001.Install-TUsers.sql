@@ -8,7 +8,7 @@ create table weddingplanner.tUsers
     NumberOfGuestes nvarchar(32) null,
     Note nvarchar(32) null,
     Email nvarchar(32) not null,
-    PhoneNumber nvarchar(32) not null,
+    PhoneNumber nvarchar(32) null,
     WeddingDate datetime2 null,
     UserType  bit,
 
