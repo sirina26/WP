@@ -17,7 +17,7 @@ begin
 
     insert into weddingplanner.tUsers(Email) values(@Email);
     select @UserId = scope_identity();
-    insert into weddingplanner.tPasswordUsers(UserId,  [Password])
+    insert into weddingplanner.tPassword(UserId,  [Password])
                            values(@userId, @Password);
 	commit;
     return 0;

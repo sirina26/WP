@@ -1,13 +1,13 @@
 create table weddingplanner.tUsers
 (
     UserId int identity(0, 1),
-    FirstName nvarchar(32) not null,
-    LastName  nvarchar(32) not null,
+    FirstName nvarchar(32) null,
+    LastName  nvarchar(32) null,
     Place nvarchar(32) null,
     MaximumPrice nvarchar(32) null,
     NumberOfGuestes nvarchar(32) null,
     Note nvarchar(32) null,
-    Email nvarchar(32) not null,
+    Email nvarchar(32) null,
     PhoneNumber nvarchar(32) null,
     WeddingDate datetime2 null,
     UserType  bit,
