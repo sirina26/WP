@@ -11,7 +11,7 @@ import Login from './components/Login.vue'
 import Logout from './components/Logout.vue'
 
 import PlaygroundPage from './components/playground/PlaygroundPage.vue'
-
+/*
 import ClassList from './components/classes/ClassList.vue'
 import ClassEdit from './components/classes/ClassEdit.vue'
 
@@ -24,7 +24,7 @@ import TeacherEdit from './components/teachers/TeacherEdit.vue'
 import TeacherAssign from './components/teachers/TeacherAssign.vue'
 
 import FollowingList from './components/github/FollowingList.vue'
-
+*/
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
@@ -32,7 +32,7 @@ const routes = [
     { path: '/logout', component: Logout, beforeEnter: requireAuth },
     { path: '/playground', component: PlaygroundPage },
 
-    { path: '/classes', component: ClassList, beforeEnter: requireAuth },
+   /* { path: '/classes', component: ClassList, beforeEnter: requireAuth },
     { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
 
     { path: '/students', component: StudentList, beforeEnter: requireAuth },
@@ -43,7 +43,8 @@ const routes = [
     { path: '/teachers/:mode([create|edit]+)/:id?', component: TeacherEdit, beforeEnter: requireAuth },
     { path: '/teachers/assign/:id', component: TeacherAssign, beforeEnter: requireAuth },
 
-    { path: '/github/following', component: FollowingList, beforeEnter: requireAuth, meta: { requiredProviders: ['GitHub'] } }
+    { path: '/github/following', component: FollowingList, beforeEnter: requireAuth, meta: { requiredProviders: ['GitHub'] } }*/
+    
 ];
 
 export default new VueRouter({

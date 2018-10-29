@@ -1,13 +1,11 @@
 <template>
     <div class="container p-3">
         <div class="text-center">
-            <h1 class="my-4">Bienvenue sur ITI.PrimarySchool</h1>
+            <h1 class="my-4">Bienvenue sur WeddingPlanner</h1>
 
             <button type="button" @click="login('Google')" class="btn btn-lg btn-block btn-primary">
                 <i class="fa fa-google" aria-hidden="true"></i> Se connecter via Google</button>
-            <button type="button" @click="login('GitHub')" class="btn btn-lg btn-block btn-primary">
-                <i class="fa fa-github" aria-hidden="true"></i> Se connecter via GitHub</button>
-            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via ITI.PrimarySchool</button>
+            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via WeddingPlanner</button>
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
-# primary-school
+# wedding-planner
 
-> Client-side Vue application for PrimarySchool.
+> Client-side Vue application for WeddingPlanner.
 
 ## Project setup
 ```

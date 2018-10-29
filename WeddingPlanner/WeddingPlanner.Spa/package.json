@@ -1,7 +1,7 @@
 {
-  "name": "primary-school",
-  "description": "Client-side Vue application for PrimarySchool.",
-  "author": "IN'TECH",
+  "name": "wedding-planner",
+  "description": "Client-side Vue application for WeddingPlanner.",
+  "author": "SIRINA",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
