@@ -2,10 +2,9 @@ create table weddingplanner.tEvent
 (
     EventId int identity(0, 1),
     UserId int not null,
-    OrganisateurId int null,
-    EventName nvarchar(300) null,
+    OrganizerId int not null,
+    EventName nvarchar(225) not null,
 
     constraint PK_tEvent primary key(EventId),
-    constraint FK_tEvent_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId)
-
 );
+insert into weddingplanner.tEvent(UserId, OrganizerId, EventName) values(0, 0, N'');

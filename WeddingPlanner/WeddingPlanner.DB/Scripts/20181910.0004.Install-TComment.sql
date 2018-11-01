@@ -6,7 +6,8 @@ create table weddingplanner.tComment
     Comment  nvarchar(500),
 
     constraint PK_tComment primary key(CommentId),
-    constraint FK_tComment_tOrganizer foreign key(OrganizerId) references weddingplanner.tOrganizer(OrganizerId),
+    constraint FK_tComment_tOrganizers foreign key(OrganizerId) references weddingplanner.tOrganizers(OrganizerId),
     constraint FK_tComment_tEvent foreign key(EventId) references weddingplanner.tEvent(EventId)
 
 );
+insert into weddingplanner.tComment( OrganizerId, EventId, Comment) values(0, 0, N'');

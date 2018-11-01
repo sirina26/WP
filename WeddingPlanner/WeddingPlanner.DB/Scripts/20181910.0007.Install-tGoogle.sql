@@ -8,3 +8,4 @@ create table weddingplanner.tGoogle
     constraint FK_tGoogle_UserId foreign key(UserId) references weddingplanner.tUsers(UserId),
     constraint UK_tGoogle_GoogleId unique(GoogleId)
 );
+insert into weddingplanner.tGoogle(UserId, GoogleId, RefreshToken) values(0, 0, '');

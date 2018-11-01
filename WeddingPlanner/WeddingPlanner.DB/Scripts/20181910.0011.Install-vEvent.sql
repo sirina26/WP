@@ -3,6 +3,7 @@ as
     select
         EventId = t.EventId,
         EventName = t.EventName,
-        OrganisateurId = t.OrganisateurId
+        OrganizerId = t.OrganizerId
+
     from weddingplanner.tEvent t;
     

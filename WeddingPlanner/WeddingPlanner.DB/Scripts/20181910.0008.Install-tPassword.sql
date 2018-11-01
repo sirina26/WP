@@ -6,4 +6,4 @@ create table weddingplanner.tPassword
     constraint PK_tPassword primary key(UserId),
     constraint FK_tPassword_UserId foreign key(UserId) references weddingplanner.tUsers(UserId)
 );
-
+insert into weddingplanner.tPassword(UserId, [Password]) values(0, convert(varbinary(128), newid()));
