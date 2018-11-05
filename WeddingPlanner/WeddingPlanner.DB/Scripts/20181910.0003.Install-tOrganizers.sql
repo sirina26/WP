@@ -8,4 +8,7 @@ create table weddingplanner.tOrganizers
      constraint PK_tOrganizers primary key(OrganizerId),
      constraint FK_tOrganizers_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId)
 );
-insert into weddingplanner.tOrganizers(UserId, OrganizerId, EventId, PhoneNumber) values(0, 0, 0, N'');
+insert into weddingplanner.tOrganizers(
+            UserId, OrganizerId, EventId, PhoneNumber)
+            values(
+            0,       0,          0,          N'');

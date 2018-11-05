@@ -2,6 +2,8 @@ create procedure weddingplanner.sPasswordUserCreate
 (
     @Email    nvarchar(64),
     @Password varbinary(128),
+    @FirstName nvarchar(64),
+    @LastName nvarchar(64),
 	@UserId   int out
 )
 as
@@ -15,7 +17,7 @@ begin
 		return 1;
 	end;
 
-    insert into weddingplanner.tUsers(Email) values(@Email);
+    insert into weddingplanner.tUsers(FirstName, LastName, Email) values(@FirstName, @LastName, @Email);
     select @UserId = scope_identity();
     insert into weddingplanner.tPassword(UserId,  [Password])
                            values(@userId, @Password);

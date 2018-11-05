@@ -7,4 +7,7 @@ create table weddingplanner.tEvent
 
     constraint PK_tEvent primary key(EventId),
 );
-insert into weddingplanner.tEvent(UserId, OrganizerId, EventName) values(0, 0, N'');
+insert into weddingplanner.tEvent(
+        UserId, OrganizerId, EventName)
+        values
+        (0,      0,         N'');

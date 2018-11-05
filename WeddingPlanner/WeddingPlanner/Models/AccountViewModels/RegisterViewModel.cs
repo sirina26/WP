@@ -6,6 +6,16 @@ namespace WeddingPlanner.WebApp.Models.AccountViewModels
     {
         [Required]
         [EmailAddress]
+        [Display( Name = "FirstName" )]
+        public string FirstName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display( Name = "LastName" )]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
         [Display( Name = "Email" )]
         public string Email { get; set; }
 

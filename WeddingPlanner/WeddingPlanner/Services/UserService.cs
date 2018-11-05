@@ -14,9 +14,9 @@ namespace WeddingPlanner.WebApp.Services
             _passwordHasher = passwordHasher;
         }
 
-        public Task<Result<int>> CreatePasswordUser( string email, string password )
+        public Task<Result<int>> CreatePasswordUser( string firstName, string lastName, string email, string password )
         {
-            return _userGateway.CreatePasswordUser( email, _passwordHasher.HashPassword( password ) );
+            return _userGateway.CreatePasswordUser( firstName, lastName, email, _passwordHasher.HashPassword( password ) );
         }
 
         public async Task<UserData> FindUser( string email, string password )

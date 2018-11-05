@@ -10,4 +10,7 @@ create table weddingplanner.tUsers
     constraint CK_tUsers_FirstName check(FirstName <> N''),
     constraint CK_tUsers_LastName check(LastName <> N'')
 );
-insert into weddingplanner.tUsers(FirstName, LastName, Email) values(left(convert(nvarchar(36), newid()), 32), left(convert(nvarchar(36), newid()), 32), N'');
+insert into weddingplanner.tUsers
+        (FirstName,                                  LastName,                               Email)
+        values(
+        left(convert(nvarchar(36), newid()), 32), left(convert(nvarchar(36), newid()), 32), N'');

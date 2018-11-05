@@ -1,0 +1,31 @@
+@model WeddingPlanner.WebApp.Models.DemoViewModels.DemoClassViewModel
+
+<h1>Editer une classe</h1>
+
+@*@foreach(var m in ViewContext.ModelState)
+{
+    <div><b>@m.Key</b></div>
+
+    @foreach(var e in m.Value.Errors)
+    {
+        <div>@e.ErrorMessage</div>
+    }
+}*@
+
+<div asp-validation-summary="All"></div>
+
+<form method="post" asp-controller="Demo" asp-action="Edit">
+    <div>
+        <label>Nom</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label>Niveau</label>
+        <input asp-for="Level" />
+        <span asp-validation-for="Level"></span>
+    </div>
+
+    <button type="submit">Enregistrer</button>
+</form>

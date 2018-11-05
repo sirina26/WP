@@ -9,5 +9,8 @@ create table weddingplanner.tWish
     constraint FK_tWish_tCustomers foreign key(CustomerId) references weddingplanner.tCustomers(CustomerId)
 
 );
-insert into weddingplanner.tWish(TaskId, CustomerId, Task, StateTask) values(0, 0, N'', 0);
+insert into weddingplanner.tWish(
+         CustomerId, Task, StateTask)
+        values(
+         0,          N'',    0);
                                 

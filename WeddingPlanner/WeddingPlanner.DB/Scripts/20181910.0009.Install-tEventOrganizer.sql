@@ -7,3 +7,6 @@ create table weddingplanner.tEventOrganizer
      constraint FK_tEventOrganizer_tEvent foreign key(EventId) references weddingplanner.tEvent(EventId),
      constraint FK_tEventOrganizer_tOrganizers foreign key(OrganizerId) references weddingplanner.tOrganizers(OrganizerId)
 );
+insert into weddingplanner.tEventOrganizer(
+        OrganizerId,    EventId)
+        values(0,       0);

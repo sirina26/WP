@@ -14,7 +14,6 @@ create table weddingplanner.tCustomers
      constraint FK_tCustomers_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId)
 );
 insert into weddingplanner.tCustomers(
-            CustomerId, EventId, UserId,
-            Place, MaximumPrice, NumberOfGuestes,
-            Note, WeddingDate)
-values(0, 0, 0, N'', 0, 0, N'', '00010101');
+    CustomerId, EventId, UserId, Place, MaximumPrice, NumberOfGuestes, Note, WeddingDate)
+values(
+        0,        0,       0,      N'',      0,          0,               N'', '00010101');

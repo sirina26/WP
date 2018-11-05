@@ -35,13 +35,15 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result<int>> CreatePasswordUser( string email, byte[] password )
+        public async Task<Result<int>> CreatePasswordUser( string FirstName, string LastName, string email, byte[] password )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
                 p.Add( "@Email", email );
                 p.Add( "@Password", password );
+                p.Add( "@FirstName", FirstName );
+                p.Add( "@LastName", LastName );
                 p.Add( "@UserId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "weddingplanner.sPasswordUserCreate", p, commandType: CommandType.StoredProcedure );
@@ -59,7 +61,7 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<string>(
-                    "select p.ProviderName from iti.vAuthenticationProvider p where p.UserId = @UserId",
+                    "select p.ProviderName from weddingplanner.vAuthenticationProvider p where p.UserId = @UserId",
                     new { UserId = userId } );
             }
         }
@@ -68,7 +70,7 @@ namespace WeddingPlanner.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                await con.ExecuteAsync( "iti.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure );
+                await con.ExecuteAsync( "weddingplanner.sUserDelete", new { UserId = userId }, commandType: CommandType.StoredProcedure );
             }
         }
 
@@ -77,7 +79,7 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 await con.ExecuteAsync(
-                    "iti.sUserUpdate",
+                    "weddingplanner.sUserUpdate",
                     new { UserId = userId, Email = email },
                     commandType: CommandType.StoredProcedure );
             }
@@ -88,7 +90,7 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 await con.ExecuteAsync(
-                    "iti.sPasswordUserUpdate",
+                    "weddingplanner.sPasswordUserUpdate",
                     new { UserId = userId, Password = password },
                     commandType: CommandType.StoredProcedure );
             }

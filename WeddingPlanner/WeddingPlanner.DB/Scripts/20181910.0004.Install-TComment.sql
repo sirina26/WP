@@ -10,4 +10,7 @@ create table weddingplanner.tComment
     constraint FK_tComment_tEvent foreign key(EventId) references weddingplanner.tEvent(EventId)
 
 );
-insert into weddingplanner.tComment( OrganizerId, EventId, Comment) values(0, 0, N'');
+insert into weddingplanner.tComment(
+        OrganizerId, EventId, Comment)
+        values(
+        0,          0,          N'');
