@@ -17,7 +17,7 @@ namespace WeddingPlanner.WebApp.Controllers
         readonly UserGateway _userGateway;
         readonly UserService _userService;
         readonly TokenService _tokenService;
-        readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
+        readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;  
         readonly Random _random;
         readonly IOptions<SpaOptions> _spaOptions;
 
@@ -54,7 +54,6 @@ namespace WeddingPlanner.WebApp.Controllers
                 await SignIn( user.Email, user.UserId.ToString() );
                 return RedirectToAction( nameof( Authenticated ) );
             }
-
             return View( model );
         }
 
