@@ -50,9 +50,13 @@
 
 <script>
 
+import BasicVueFeatures from './BasicVueFeatures.vue'
+import Alert from './Alert.vue'
 
 export default {
     components: {
+         BasicVueFeatures,
+        Alert
        
     }
 }
