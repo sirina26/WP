@@ -12,5 +12,5 @@ as
     Note = e.Note,
     WeddingDate = e.WeddingDate 
 
-    from weddingplanners.tEvent t;
+    from weddingplanner.tEvent e;
     

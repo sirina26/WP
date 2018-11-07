@@ -1,14 +1,12 @@
 create table weddingplanner.tOrganizers
 (
     OrganizerId int not null,
-    UserId int not null,
-    EventId int not null,
     PhoneNumber nvarchar(32) not null,
 
      constraint PK_tOrganizers primary key(OrganizerId),
-     constraint FK_tOrganizers_tUsers foreign key(UserId) references weddingplanner.tUsers(UserId)
+     constraint FK_tOrganizers_tUsers foreign key(OrganizerId) references weddingplanner.tUsers(UserId)
 );
 insert into weddingplanner.tOrganizers(
-            UserId, OrganizerId, EventId, PhoneNumber)
+           OrganizerId, PhoneNumber)
             values(
-            0,       0,          0,          N'');
+            0,          N'');

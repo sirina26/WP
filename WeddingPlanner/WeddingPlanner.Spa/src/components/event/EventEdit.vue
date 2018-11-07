@@ -15,12 +15,22 @@
             </div>
 
             <div class="form-group">
-                <label class="required">Nom</label>
+                <label class="required">Nom de l'évènement</label>
                 <input type="text" v-model="item.lastName" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label class="required">Prénom</label>
+                <label class="required">Place de l'évènement</label>
+                <input type="text" v-model="item.firstName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Nombre d'invités</label>
+                <input type="text" v-model="item.firstName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Remarques</label>
                 <input type="text" v-model="item.firstName" class="form-control" required>
             </div>
 

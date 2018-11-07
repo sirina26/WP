@@ -3,7 +3,6 @@ as
 select
 
     CustomerId = t.CustomerId,
-    EventId = t.EventId,
-    UserId = t.UserId
+    EventId = t.EventId
         
 from weddingplanner.tCustomers t;
