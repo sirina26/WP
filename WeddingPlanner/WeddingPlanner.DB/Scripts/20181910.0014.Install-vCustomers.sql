@@ -4,11 +4,6 @@ select
 
     CustomerId = t.CustomerId,
     EventId = t.EventId,
-    UserId = t.UserId,
-    Place = t.Place,
-    MaximumPrice = t.MaximumPrice,
-    NumberOfGuestes = t.NumberOfGuestes,
-    Note = t.Note,
-    WeddingDate = t.WeddingDate
+    UserId = t.UserId
         
 from weddingplanner.tCustomers t;
