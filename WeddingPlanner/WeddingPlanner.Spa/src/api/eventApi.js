@@ -11,6 +11,8 @@ export async function getEventAsync(eventId) {
 }
 
 export async function createEventAsync(model) {
+    console.log("lol");
+    console.log(endpoint);
     return await postAsync(endpoint, model);
 }
 

@@ -16,30 +16,33 @@
 
             <div class="form-group">
                 <label class="required">Nom de l'évènement</label>
-                <input type="text" v-model="item.lastName" class="form-control" required>
+                <input type="text" v-model="item.eventName" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label class="required">Place de l'évènement</label>
-                <input type="text" v-model="item.firstName" class="form-control" required>
+                <input type="text" v-model="item.place" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label class="required">Nombre d'invités</label>
-                <input type="text" v-model="item.firstName" class="form-control" required>
+                <input type="number" v-model="item.NumberOfGuestes" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Prix maximum</label>
+                <input type="float" v-model="item.maximumPrice" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label class="required">Remarques</label>
-                <input type="text" v-model="item.firstName" class="form-control" required>
+                <input type="text" v-model="item.Note" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label class="required">Date de l'évènement </label>
-                <input type="date" v-model="item.birthDate" class="form-control" required>
+                <input type="date" v-model="item.WeddingDate" class="form-control" required>
             </div>
-
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
         </form>
     </div>
 </template>
@@ -54,7 +57,7 @@
                 item: {},
                 mode: null,
                 id: null,
-                errors: []
+                errors: [],
             }
         },
 
@@ -67,7 +70,7 @@
                     const item = await getEventAsync(this.id);
 
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
-                    item.birthDate = DateTime.fromISO(item.birthDate).toISODate();
+                    item.WeddingDate = DateTime.fromISO(item.WeddingDate).toISODate();
 
                     this.item = item;
                 }
@@ -83,10 +86,8 @@
                 event.preventDefault();
 
                 var errors = [];
-
-                if(!this.item.lastName) errors.push("Nom")
-                if(!this.item.firstName) errors.push("Prénom")
-                if(!this.item.birthDate) errors.push("Date de naissance")
+                
+                if(!this.item.WeddingDate) errors.push("Date de l'évènement")
 
                 this.errors = errors;
 

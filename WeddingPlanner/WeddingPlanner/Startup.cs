@@ -31,8 +31,9 @@ namespace WeddingPlanner.WebApp
             services.AddOptions();
 
             services.AddMvc();
-            services.AddSingleton( _ => new UserGateway( Configuration["ConnectionStrings:PrimarySchoolDB"] ) );
-          
+            services.AddSingleton( _ => new UserGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
+            services.AddSingleton( _ => new EventGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
+
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<UserService>();
             services.AddSingleton<TokenService>();

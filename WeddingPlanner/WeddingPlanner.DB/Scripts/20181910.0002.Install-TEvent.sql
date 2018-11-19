@@ -12,6 +12,9 @@ create table weddingplanner.tEvent
     constraint PK_tEvent primary key(EventId),
 );
 insert into weddingplanner.tEvent(
-        CustomerId, OrganizerId, EventName, Place, MaximumPrice, NumberOfGuestes, Note, WeddingDate)
+        CustomerId, OrganizerId, EventName, Place,
+        MaximumPrice, NumberOfGuestes, Note, WeddingDate)
         values
-        (0,      0,         N'',      N'',      0,          0,               N'', '00010101');
+        (0,      0,         N'',                N'',
+        0,          0,      N'',         '00010101');
+

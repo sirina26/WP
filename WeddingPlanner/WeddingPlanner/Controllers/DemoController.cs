@@ -23,12 +23,12 @@
 //        {
 //            var classes = await _classGateway.GetAll();
 
-//            var models = classes.Select(x => new DemoClassViewModel
+//            var models = classes.Select( x => new DemoClassViewModel
 //            {
 //                ClassId = x.ClassId,
 //                Level = x.Level,
 //                Name = x.Name
-//            });
+//            } );
 
 //            return View( models );
 //        }
@@ -38,7 +38,7 @@
 //        {
 //            if( classId.HasValue )
 //            {
-//                var result = await _classGateway.FindById(classId.Value);
+//                var result = await _classGateway.FindById( classId.Value );
 
 //                if( result.HasError )
 //                {

@@ -2,15 +2,15 @@ create view weddingplanner.vEvent
 as
     select
      
-    EventId = e.EventId,
-    CustomerId = case when e.CustomerId = 0 then N'' else e.CustomerId end,
-    OrganizerId = case when e.OrganizerId = 0 then N'' else e.OrganizerId end,
-    EventName = e.EventName,
-    Place = e.Place,
-    MaximumPrice = e.MaximumPrice,
-    NumberOfGuestes = e.NumberOfGuestes ,
-    Note = e.Note,
-    WeddingDate = e.WeddingDate 
+    EventId = v.EventId,
+    CustomerId = case when v.CustomerId = 0 then N'' else v.CustomerId end,
+    OrganizerId = case when v.OrganizerId = 0 then N'' else v.OrganizerId end,
+    EventName = v.EventName,
+    Place = v.Place,
+    MaximumPrice = v.MaximumPrice,
+    NumberOfGuestes = v.NumberOfGuestes ,
+    Note = v.Note,
+    WeddingDate = v.WeddingDate 
 
-    from weddingplanner.tEvent e;
+    from weddingplanner.tEvent v;
     
