@@ -5,9 +5,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+
     <ItemGroup>
         <EmbeddedResource Include="Scripts\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
     </ItemGroup>
+
+
 
     <ItemGroup>
         <Content Include="appsettings.json">

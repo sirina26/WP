@@ -71,7 +71,8 @@ namespace WeddingPlanner.WebApp.Controllers
         {
             if( ModelState.IsValid )
             {
-                Result<int> result = await _userService.CreatePasswordUser( model.FirstName, model.LastName, model.Email, model.Password );
+
+                Result<int> result = await _userService.CreatePasswordUser( model.FirstName, model.LastName, model.Email, model.Password, model.UserType );
                 if( result.HasError )
                 {
                     ModelState.AddModelError( string.Empty, result.ErrorMessage );

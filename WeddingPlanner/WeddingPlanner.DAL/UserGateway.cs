@@ -35,10 +35,11 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result<int>> CreatePasswordUser( string FirstName, string LastName, string email, byte[] password )
+        public async Task<Result<int>> CreatePasswordUser( string FirstName, string LastName, string email, byte[] password,bool userType )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
+                int id;
                 var p = new DynamicParameters();
                 p.Add( "@Email", email );
                 p.Add( "@Password", password );
@@ -52,7 +53,25 @@ namespace WeddingPlanner.DAL
                 if( status == 1 ) return Result.Failure<int>( Status.BadRequest, "An account with this email already exists." );
 
                 Debug.Assert( status == 0 );
+               
+                id= p.Get<int>( "@UserId" );
+                var c = new DynamicParameters();
+
+                if( userType == true )
+                {
+                    c.Add( "@CustomerId", id );
+                    c.Add( "@EventId", 0 );
+                    await con.ExecuteAsync( "weddingplanner.sCustomersCreate", c, commandType: CommandType.StoredProcedure );
+
+                }
+                else
+                {
+                    c.Add( "@OrganizerId", id );
+                    c.Add( "@PhoneNumber", 0 );
+                    await con.ExecuteAsync( "weddingplanner.sOrganizersCreate", c, commandType: CommandType.StoredProcedure );
+                }
                 return Result.Success( p.Get<int>( "@UserId" ) );
+
             }
         }        
 
