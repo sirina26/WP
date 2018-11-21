@@ -29,7 +29,8 @@ namespace WeddingPlanner.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                return await con.QueryFirstOrDefaultAsync<UserData>(
+                return
+                    await con.QueryFirstOrDefaultAsync<UserData>(
                     "select u.UserId, u.Email,u.[Password] from weddingplanner.vUsers u where u.Email = @Email",
                     new { Email = email } );
             }
