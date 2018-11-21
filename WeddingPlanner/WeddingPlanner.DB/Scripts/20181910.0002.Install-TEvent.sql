@@ -3,7 +3,7 @@ create table weddingplanner.tEvent
     EventId int identity(0, 1),
     CustomerId int not null,
     OrganizerId int not null,
-    EventName nvarchar(225) not null,
+    EventName nvarchar(32) not null,
     Place nvarchar(32) not null,
     MaximumPrice float not null,
     NumberOfGuestes int not null,

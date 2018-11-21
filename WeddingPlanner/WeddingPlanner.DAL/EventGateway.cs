@@ -109,7 +109,7 @@ namespace WeddingPlanner.DAL
                 int status = p.Get<int>( "@Status" );
 
                 Debug.Assert( status == 0 );
-                return Result.Success( Status.Created, p.Get<int>( "@StudentId" ) );
+                return Result.Success( Status.Created, p.Get<int>( "@EventId" ) );
             }
         }
 

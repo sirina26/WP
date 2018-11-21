@@ -35,6 +35,7 @@ const routes = [
    
     { path: '/event', component: EventList, beforeEnter: requireAuth },
     { path: '/event/:mode([create|edit]+)/:id?', component: EventEdit, beforeEnter: requireAuth },
+    { path: '/event/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
 /*
     { path: '/classes', component: ClassList, beforeEnter: requireAuth },
     { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },

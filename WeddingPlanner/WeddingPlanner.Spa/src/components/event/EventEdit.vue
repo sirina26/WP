@@ -43,7 +43,8 @@
                 <label class="required">Date de l'évènement </label>
                 <input type="date" v-model="item.WeddingDate" class="form-control" required>
             </div>
-                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
 
         </form>
     </div>
@@ -64,6 +65,7 @@
         },
 
         async mounted() {
+            
             this.mode = this.$route.params.mode;
             this.id = this.$route.params.id;
             
@@ -96,13 +98,14 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
+                            debugger;
                             await createEventAsync(this.item);
                         }
                         else {
                             await updateEventAsync(this.item);
                         }
 
-                        this.$router.replace('../');
+                        this.$router.replace('../event');
                     }
                     catch(e) {
                         console.error(e);
