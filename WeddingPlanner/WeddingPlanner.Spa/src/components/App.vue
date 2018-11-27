@@ -17,6 +17,9 @@
                             <router-link class="nav-link" to="/event">Gestion d'évènement</router-link>
                         </li>
                         <li class="nav-item">
+                            <router-link class="nav-link" to="/mailing">Gestion des e-mails</router-link>
+                        </li>
+                        <li class="nav-item">
                             <router-link class="nav-link" to="/messaging">Gestion des Message</router-link>
                         </li>
                     </ul>

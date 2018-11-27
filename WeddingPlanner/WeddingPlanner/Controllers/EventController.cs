@@ -39,7 +39,7 @@ namespace WeddingPlanner.WebApp.Controllers
         {
             Result<int> result = await _eventGateway.Create( model.EventName,
                 model.Place, model.WeddingDate, model.MaximumPrice,
-           model.NumberOfGuestes,  model.Note );
+            model.NumberOfGuestes,  model.Note );
             return this.CreateResult( result, o =>
             {
                 o.RouteName = "GetEvent";

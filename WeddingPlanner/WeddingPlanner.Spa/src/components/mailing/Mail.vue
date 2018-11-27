@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 <label class="required">A</label>
-                <input type="text" v-model="item.ToName" class="form-control" required>
+                <input type="email" v-model="item.ToName" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -22,10 +22,11 @@
                 <input type="text" v-model="item.ObjectMail" class="form-control" required>
             </div>
 
-            <div class="form-group">
-                <label class="required">Mail</label>
-                <input type="textbox" v-model="item.Mail" class="form-control" required>
+            <span class="required">Mail</span><br>
+            <div class="input-group">
+                <textarea class="form-control" aria-label="With textarea" v-model="item.Mail"></textarea>
             </div>
+           
             
             <button type="submit" class="btn btn-primary">Envoie</button>
 
@@ -35,7 +36,6 @@
 
 <script>
     import { getMailAsync, createMailAsync, updateMailAsync } from '../../api/mailingApi'
-    import { DateTime } from 'luxon'
 
     export default {
         data () {
@@ -50,7 +50,7 @@
         async mounted() {
             
             this.mode = this.$route.params.mode;
-            this.id = this.$route.params.id;
+           // this.id = this.$route.params.id;
             debugger;
             if(this.mode == 'edit') {
                 try {
@@ -70,19 +70,13 @@
 
                 var errors = [];
                 
-                if(!this.item.WeddingDate) errors.push("Date de l'évènement")
                 this.errors = errors;
 
                 if(errors.length == 0) {
                     try {
-                        if(this.mode == 'create') {
                             debugger;
                             await createMailAsync(this.item);
-                        }
-                        else {
-                            await updateMailAsync(this.item);
-                        }
-
+                       
                         this.$router.replace('../mailing');
                     }
                     catch(e) {

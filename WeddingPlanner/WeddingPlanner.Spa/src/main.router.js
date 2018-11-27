@@ -38,6 +38,8 @@ const routes = [
     { path: '/event/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
 
     { path: '/mailing', component: MailingEdit, beforeEnter: requireAuth },
+    { path: '/mailing/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
+
   /*  { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
 
     { path: '/teachers', component: TeacherList, beforeEnter: requireAuth },
