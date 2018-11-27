@@ -15,9 +15,9 @@ import PlaygroundPage from './components/playground/PlaygroundPage.vue'
 
 import EventList from './components/event/EventList.vue'
 import EventEdit from './components/event/EventEdit.vue'
-/*
-import ClassList from './components/classes/ClassList.vue'
-import ClassEdit from './components/classes/ClassEdit.vue'
+
+import MailingEdit from './components/mailing/Mail.vue'
+/*import ClassEdit from './components/classes/ClassEdit.vue'
 
 import TeacherList from './components/teachers/TeacherList.vue'
 import TeacherEdit from './components/teachers/TeacherEdit.vue'
@@ -36,9 +36,9 @@ const routes = [
     { path: '/event', component: EventList, beforeEnter: requireAuth },
     { path: '/event/:mode([create|edit]+)/:id?', component: EventEdit, beforeEnter: requireAuth },
     { path: '/event/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
-/*
-    { path: '/classes', component: ClassList, beforeEnter: requireAuth },
-    { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
+
+    { path: '/mailing', component: MailingEdit, beforeEnter: requireAuth },
+  /*  { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
 
     { path: '/teachers', component: TeacherList, beforeEnter: requireAuth },
     { path: '/teachers/:mode([create|edit]+)/:id?', component: TeacherEdit, beforeEnter: requireAuth },

@@ -23,7 +23,7 @@
 //        {
 //            var classes = await _classGateway.GetAll();
 
-//            var models = classes.Select( x => new DemoClassViewModel
+//            var models = classes.Select( x => new DemoEventViewModel
 //            {
 //                ClassId = x.ClassId,
 //                Level = x.Level,
@@ -48,7 +48,7 @@
 //                {
 //                    var existing = result.Content;
 
-//                    var model = new DemoClassViewModel
+//                    var model = new DemoEventViewModel
 //                    {
 //                        ClassId = existing.ClassId,
 //                        Level = existing.Level,
@@ -60,12 +60,12 @@
 //            }
 //            else
 //            {
-//                return View( new DemoClassViewModel() );
+//                return View( new DemoEventViewModel() );
 //            }
 //        }
 
 //        [HttpPost( "Edit/{classId?}" )]
-//        public async Task<IActionResult> Edit( int? classId, DemoClassViewModel model )
+//        public async Task<IActionResult> Edit( int? classId, DemoEventViewModel model )
 //        {
 //            if( ModelState.IsValid )
 //            {
