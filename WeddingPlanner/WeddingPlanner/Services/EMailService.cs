@@ -25,7 +25,8 @@ namespace WeddingPlanner.WebApp.Services
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential( fromAddress.Address, fromPassword )
+                Credentials = new NetworkCredential( fromAddress.Address, fromPassword ),
+                Timeout = 20000
             };
             using( var message = new MailMessage( fromAddress, toAddress )
             {
