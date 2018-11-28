@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 <label class="required">A</label>
-                <input type="email" v-model="item.ToName" class="form-control" required>
+                <input type="email" v-model="item.MailAdress" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -25,6 +25,7 @@
             <span class="required">Mail</span><br>
             <div class="input-group">
                 <textarea class="form-control" aria-label="With textarea" v-model="item.Mail"></textarea>
+
             </div>
            
             
@@ -47,23 +48,6 @@
             }
         },
 
-        async mounted() {
-            
-            this.mode = this.$route.params.mode;
-           // this.id = this.$route.params.id;
-            debugger;
-            if(this.mode == 'edit') {
-                try {
-                    const item = await getMailAsync(this.id);
-                    this.item = item;
-                }
-                catch(e) {
-                    console.error(e);
-                    this.$router.replace('/mailing');
-                }
-            }
-        },
-
         methods: {
             async onSubmit(mailing) {
                 mailing.preventDefault();
@@ -73,15 +57,11 @@
                 this.errors = errors;
 
                 if(errors.length == 0) {
-                    try {
-                            debugger;
-                            await createMailAsync(this.item);
+                  debugger;
+                  await createMailAsync(this.item);
                        
-                        this.$router.replace('../mailing');
-                    }
-                    catch(e) {
-                        console.error(e);
-                    }
+                        ///this.$router.replace('../mailing');
+                   
                 }
             }
         }

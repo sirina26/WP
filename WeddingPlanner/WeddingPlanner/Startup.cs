@@ -33,7 +33,6 @@ namespace WeddingPlanner.WebApp
             services.AddMvc();
             services.AddSingleton( _ => new UserGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
             services.AddSingleton( _ => new EventGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
-            services.AddSingleton( _ => new EMailGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
 
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<UserService>();

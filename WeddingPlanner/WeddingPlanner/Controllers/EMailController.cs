@@ -6,31 +6,19 @@ using WeddingPlanner.WebApp.Models.EMailViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WeddingPlanner.WebApp.Controllers;
+using WeddingPlanner.WebApp.Services;
 
 namespace WeddingPlanner.WebApp.Controllers
 {
-    [Route( "api/[controller]" )]
-    [Authorize( AuthenticationSchemes = JwtBearerAuthentication.AuthenticationScheme )]
+    [Route( "/api/mailing" )]
     public class EMailController : Controller
     {
-
-        readonly EMailGateway _eMailGateway;
-
-        public EMailController( EMailGateway eMailGateway )
-        {
-            _eMailGateway = eMailGateway;
-        }
+        readonly EMailService _emailService = new EMailService();
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent( [FromBody] EMailViewModels model )
+        public async Task CreateMail( [FromBody] EMailViewModels model )
         {
-            Result<int> result = await _eMailGateway.Mail
-                ( model.object_mail, model.mail, model.mailadress );
-            return this.CreateResult( result, o =>
-            {
-                o.RouteName = "GetEMail";
-                o.RouteValues = id => new { id };
-            } );
+            await _emailService.Mail( model.MailAdress, model.ObjectMail, model.Mail );
         }
 
     }
