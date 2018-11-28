@@ -1,4 +1,4 @@
-create view weddingplanner.vOrganizerss
+create view weddingplanner.vOrganizers
 as
     select     
            OrganizerId =t.OrganizerId,

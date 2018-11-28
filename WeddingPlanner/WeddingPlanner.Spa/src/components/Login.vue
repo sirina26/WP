@@ -1,11 +1,12 @@
 <template>
-    <div class="container p-3">
+    <div class="phot">
         <div class="text-center">
             <h1 class="my-4">Bienvenue sur WeddingPlanner</h1>
             <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via WeddingPlanner</button>
         </div>
     </div>
 </template>
+
 
 <script>
 import AuthService from '../services/AuthService'
@@ -43,4 +44,9 @@ iframe {
   width: 100%;
   height: 600px;
 }
+.phot{
+    background-image: url("https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d");
+    background-size: cover
+}
 </style>
+

@@ -24,6 +24,17 @@ namespace WeddingPlanner.DAL
                     new { UserId = userId } );
             }
         }
+        public async Task<UserData> UserType( int userId )
+        {
+            using( SqlConnection con = new SqlConnection( _connectionString ) )
+            {
+              
+                  return await con.QueryFirstOrDefaultAsync<UserData>(
+                  "select t.OrganizerId from weddingplanner.vOrganizers t where t.OrganizerId = @UserId",               
+                  new { UserId = userId } );
+               
+            }
+        }
 
         public async Task<UserData> FindByEmail( string email )
         {
