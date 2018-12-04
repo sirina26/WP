@@ -7,7 +7,7 @@ export async function getMailListAsync() {
     return await getAsync(endpoint);
 }
 export async function getMailAsync(emailId) {
-    return await getAsync(`${endpoint}/${emailId}`);
+    return await getAsync(endpoint);
 }
 
 export async function createMailAsync(model) {

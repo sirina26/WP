@@ -21,5 +21,11 @@ namespace WeddingPlanner.WebApp.Controllers
             await _emailService.Mail( model.MailAdress, model.ObjectMail, model.Mail );
         }
 
+        [HttpGet]
+        public async Task<string> GetEMailValidation( [FromBody] EMailViewModels model )
+        {
+            return await _emailService.veri( model.MailAdress );
+        }
+
     }
 }

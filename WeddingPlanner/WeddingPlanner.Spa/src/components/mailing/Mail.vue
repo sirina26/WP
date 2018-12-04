@@ -29,45 +29,56 @@
             </div>
            
             
-            <button type="submit" class="btn btn-primary">Envoie</button>
+            <button type="submit" class="btn btn-primary" @click="openDialog">Envoie</button>
 
+    
+            <div id="app">
+                <a11y-dialog id="app-dialog" app-root="#app" @dialog-ref="assignDialogRef">
+                    <h1 slot="title">EMail envoi</h1>
+                </a11y-dialog>
+            </div>  
         </form>
     </div>
 </template>
 
 <script>
-    import { getMailAsync, createMailAsync, updateMailAsync } from '../../api/mailingApi'
-
+    import { getMailAsync, createMailAsync, updateMailAsync  } from '../../api/mailingApi'
     export default {
+          name: 'YourComponent',
+
         data () {
             return {
                 item: {},
                 mode: null,
                 id: null,
                 errors: [],
+                dialog: null,
+
             }
         },
-
         methods: {
+        
             async onSubmit(mailing) {
                 mailing.preventDefault();
-
                 var errors = [];
                 
                 this.errors = errors;
-
+                
                 if(errors.length == 0) {
                   debugger;
                   await createMailAsync(this.item);
-                       
-                        ///this.$router.replace('../mailing');
                    
                 }
+            },
+            openDialog () {
+      if (this.dialog) {
+        this.dialog.show()
+      }
+    },
+
+        assignDialogRef (dialog) {
+        this.dialog = dialog
             }
-        }
     }
+}
 </script>
-
-<style lang="scss">
-
-</style>
