@@ -17,14 +17,9 @@ import EventList from './components/event/EventList.vue'
 import EventEdit from './components/event/EventEdit.vue'
 
 import MailingEdit from './components/mailing/Mail.vue'
-/*import ClassEdit from './components/classes/ClassEdit.vue'
+import InvitationEdit from './components/Invitation/Invitation.vue'
 
-import TeacherList from './components/teachers/TeacherList.vue'
-import TeacherEdit from './components/teachers/TeacherEdit.vue'
-import TeacherAssign from './components/teachers/TeacherAssign.vue'
 
-import FollowingList from './components/github/FollowingList.vue'
-*/
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
@@ -40,14 +35,7 @@ const routes = [
     { path: '/mailing', component: MailingEdit, beforeEnter: requireAuth },
     { path: '/mailing/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
 
-  /*  { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
-
-    { path: '/teachers', component: TeacherList, beforeEnter: requireAuth },
-    { path: '/teachers/:mode([create|edit]+)/:id?', component: TeacherEdit, beforeEnter: requireAuth },
-    { path: '/teachers/assign/:id', component: TeacherAssign, beforeEnter: requireAuth },
-
-    { path: '/github/following', component: FollowingList, beforeEnter: requireAuth, meta: { requiredProviders: ['GitHub'] } }*/
-    
+    { path: '/Invitation', component: InvitationEdit }
 ];
 
 export default new VueRouter({

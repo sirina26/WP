@@ -11,16 +11,15 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nom de l'événement</th>
                     <th>ID  de Client</th>
                     <th>ID  de Organizateur</th>
                     <th>Endroit de l'événement</th>
                     <th>Prix maximum de l'événement</th>
+                   <th>date de l'événement</th> 
                     <th>Nombre d'invités</th>
                     <th>Remarques</th>
-                    <th>date de l'événement</th>
-
+                    <th>Option</th>
                 </tr>
             </thead>
 
@@ -30,16 +29,14 @@
                 </tr>
 
                 <tr v-for="i of eventList">
-                    <td>{{ i.eventtId }}</td>
+                    <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.organizerId }}</td>
-                    <td>{{ i.eventName }}</td>
                     <td>{{ i.place }}</td>
                     <td>{{ i.maximumPrice }}</td>
                     <td>{{ new Date(i.WeddingDate).toLocaleDateString() }}</td>
-                    <td>{{ i.NumberOfGuestes }}</td>
-                    <td>{{ i.Note }}</td>
-
+                    <td>{{ i.numberOfGuestes }}</td>
+                    <td>{{ i.note }}</td>
                     <td>
                         <router-link :to="`event/edit/${i.eventtId}`"><i class="fa fa-pencil"></i></router-link>
                         <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
@@ -68,6 +65,7 @@
             async refreshList() {
                 try {
                     this.eventList = await getEventListAsync();
+
                 }
                 catch(e) {
                     console.error(e);

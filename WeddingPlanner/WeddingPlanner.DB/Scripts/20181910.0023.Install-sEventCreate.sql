@@ -19,7 +19,7 @@ begin
                     Place, MaximumPrice,NumberOfGuestes,
                     Note, WeddingDate)
         values
-                    (1, 2, @EventName,
+                    (0, 0, @EventName,
                     @Place, @MaximumPrice,@NumberOfGuestes,
                     @Note, @WeddingDate);
 	set @EventId = scope_identity();

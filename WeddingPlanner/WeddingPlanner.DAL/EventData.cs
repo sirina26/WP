@@ -19,6 +19,8 @@ namespace WeddingPlanner.DAL
         public DateTime WeddingDate { get; set; }
 
         public string Note { get; set; }
+
+        public string Place { get; set; }
     
     }
 }
