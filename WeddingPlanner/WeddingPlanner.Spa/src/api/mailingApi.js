@@ -2,7 +2,7 @@ import { getAsync, postAsync, putAsync, deleteAsync } from '../helpers/apiHelper
 
 const endpoint = process.env.VUE_APP_BACKEND + "/api/mailing";
 
-//si j'eregistre dans bdd
+//si j'eregistre dans bdd   
 export async function getMailListAsync() {
     return await getAsync(endpoint);
 }
