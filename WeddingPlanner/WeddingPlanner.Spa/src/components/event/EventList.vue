@@ -11,12 +11,12 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>Nom de l'événement</th>
-                    <th>ID  de Client</th>
-                    <th>ID  de Organizateur</th>
-                    <th>Endroit de l'événement</th>
-                    <th>Prix maximum de l'événement</th>
-                   <th>date de l'événement</th> 
+                    <th>Nom</th>
+                    <th>ID de Client</th>
+                    <th>ID de l'Organizateur</th>
+                    <th>Endroit</th>
+                    <th>Prix maximum </th>
+                    <th>Date </th> 
                     <th>Nombre d'invités</th>
                     <th>Remarques</th>
                     <th>Option</th>
@@ -28,7 +28,7 @@
                     <td colspan="6" class="text-center">Il n'y a actuellement aucun event.</td>
                 </tr>
 
-                <tr v-for="i of eventList">
+                <tr v-for="i of paginatedData">
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.organizerId }}</td>
@@ -40,10 +40,21 @@
                     <td>
                         <router-link :to="`event/edit/${i.eventtId}`"><i class="fa fa-pencil"></i></router-link>
                         <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
+                        <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-comments-o"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
+          <button 
+            :disabled="pageNumber === 0" 
+            @click="prevPage">
+            Previous
+        </button>
+        <button 
+            :disabled="pageNumber > pageCount -1" 
+            @click="nextPage">
+            Next
+        </button>
     </div>
 </template>
 
@@ -53,15 +64,28 @@
     export default {
         data() {
             return {
-                eventList: []
+                eventList: [],
+                pageNumber: 0
+
             }
         },
-
+        props:{
+            eventList:{
+                type:Array,
+                required:true
+            },
+            size:{
+            type:Number,
+            required:false,
+            default: 10
+            }
+        },
         async mounted() {
             await this.refreshList();
         },
 
         methods: {
+            
             async refreshList() {
                 try {
                     this.eventList = await getEventListAsync();
@@ -80,8 +104,30 @@
                 catch(e) {
                     console.error(e);
                 }
+            },
+             nextPage(){
+                 this.pageNumber++;
+            },
+            
+            prevPage(){
+                this.pageNumber--;
             }
-        }
+        },
+        computed:
+        {
+            pageCount(){                
+                let l = this.eventList.length,
+                s = this.size;
+                return Math.floor(l/s);
+                
+            },
+            paginatedData(){
+                const start = this.pageNumber * this.size,
+                end = start + this.size;
+                return this.eventList.slice(start, end);
+            } 
+        }  
+        
     }
 </script>
 

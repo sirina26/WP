@@ -98,8 +98,9 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
-                            debugger;
                             await createEventAsync(this.item);
+debugger;
+
                         }
                         else {
                             await updateEventAsync(this.item);

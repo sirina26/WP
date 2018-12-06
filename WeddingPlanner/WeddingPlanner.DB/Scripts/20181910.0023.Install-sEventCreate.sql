@@ -5,7 +5,7 @@ create procedure weddingplanner.sEventCreate
     @Place nvarchar (32),
     @MaximumPrice float,
     @NumberOfGuestes int,
-    @Note nvarchar,
+    @Note nvarchar (32),
     @WeddingDate datetime2,
     @EventId   int out
 )
