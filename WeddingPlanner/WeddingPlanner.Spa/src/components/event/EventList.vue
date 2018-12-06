@@ -64,16 +64,12 @@
     export default {
         data() {
             return {
-                eventList: [],
+                eventList:[],
                 pageNumber: 0
 
             }
         },
         props:{
-            eventList:{
-                type:Array,
-                required:true
-            },
             size:{
             type:Number,
             required:false,
@@ -115,10 +111,13 @@
         },
         computed:
         {
-            pageCount(){                
-                let l = this.eventList.length,
-                s = this.size;
-                return Math.floor(l/s);
+            pageCount(){  
+                if(this.eventList !== "undefined")          
+                {
+                    let l = this.eventList.length,
+                    s = this.size;
+                    return Math.floor(l/s);
+                }
                 
             },
             paginatedData(){
