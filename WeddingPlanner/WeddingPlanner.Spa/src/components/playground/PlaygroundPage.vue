@@ -1,24 +1,6 @@
 <template>
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Tic tac toe
-            </div>
-
-            <div class="card-body">
-                <tic-tac-toe></tic-tac-toe>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                Basic tic tac toe
-            </div>
-
-            <div class="card-body">
-                <basic-tic-tac-toe></basic-tic-tac-toe>
-            </div>
-        </div>
+       
 
         <div class="card">
             <div class="card-header">
