@@ -85,7 +85,6 @@
             async refreshList() {
                 try {
                     this.eventList = await getEventListAsync();
-
                 }
                 catch(e) {
                     console.error(e);

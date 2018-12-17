@@ -19,6 +19,9 @@ import EventEdit from './components/event/EventEdit.vue'
 import MailingEdit from './components/mailing/Mail.vue'
 import InvitationEdit from './components/Invitation/Invitation.vue'
 
+import WishListeEdit from './components/wishListe/WishListeEdit.vue'
+import WishListe from './components/wishListe/WishListe.vue'
+
 
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
@@ -33,7 +36,11 @@ const routes = [
     { path: '/event/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
 
     { path: '/mailing', component: MailingEdit, beforeEnter: requireAuth },
-    { path: '/mailing/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
+    { path: '/mailing/:mode([create|edit]+)/', component: MailingEdit, beforeEnter: requireAuth },
+    
+    { path: '/wishListe', component: WishListe, beforeEnter: requireAuth },
+    { path: '/WishListe/:mode([create|edit]+)/', component: WishListeEdit, beforeEnter: requireAuth },
+    { path: '/WishListe/:mode([create|edit]+)/:id?', component: WishListeEdit, beforeEnter: requireAuth },
 
     { path: '/Invitation', component: InvitationEdit }
 ];

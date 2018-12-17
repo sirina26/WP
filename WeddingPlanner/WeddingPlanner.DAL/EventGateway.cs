@@ -82,16 +82,8 @@ namespace WeddingPlanner.DAL
         }
 
 
-        public Task<Result<int>> Create( string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)//, int customerId, int organizerId )
-        {
-
-            return Create( place, weddingDate, maximumPrice, numberOfGuestes, note );//, customerId, organizerId );
-        }
-
-
         public async Task<Result<int>> Create( string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)
         {
-            
 
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
