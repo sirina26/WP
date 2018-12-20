@@ -73,7 +73,7 @@
             size:{
             type:Number,
             required:false,
-            default: 10
+            default: 7
             }
         },
         async mounted() {

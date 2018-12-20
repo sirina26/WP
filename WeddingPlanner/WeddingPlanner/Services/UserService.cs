@@ -29,6 +29,17 @@ namespace WeddingPlanner.WebApp.Services
 
             return null;
         }
+        public async Task<UserData> FindUserType( int id )
+        {
+            //UserData user = await _userGateway.FindByEmail( id );
+            //if( user != null && _passwordHasher.VerifyHashedPassword( user.Password, password ) == PasswordVerificationResult.Success )
+            //{
+            //    return user;
+            //}
+
+            return null;
+        }
+
     }
 }
 

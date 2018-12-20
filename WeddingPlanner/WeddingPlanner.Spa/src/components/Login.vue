@@ -40,9 +40,12 @@ export default {
 </script>
 
 <style lang="scss">
+
 body{
     background-image: url("https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d");
     background-repeat: no-repeat;
+    .button5 {border-radius: 50%;}
+
 }
 </style>
 

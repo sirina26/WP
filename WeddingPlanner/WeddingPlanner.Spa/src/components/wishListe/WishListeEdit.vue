@@ -18,7 +18,7 @@
                 <input type="text" v-model="item.task" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            <button type="submit" button5 class="btn btn-primary">Sauvegarder</button>
 
         </form>
     </div>
@@ -39,14 +39,14 @@
         },
 
         async mounted() {
-            
+            debugger;
             this.mode = this.$route.params.mode;
             this.id = this.$route.params.id;
             
             if(this.mode == 'edit') {
                 try {
-                    debugger;
                     const item = await getWishListAsync(this.id);
+                    debugger;
 
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
                     item.WeddingDate = DateTime.fromISO(item.WeddingDate).toISODate();
@@ -66,7 +66,7 @@
                 event.preventDefault();
                 var errors = [];
                 this.errors = errors;
-
+debugger;
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {
