@@ -12,18 +12,16 @@ import Logout from './components/Logout.vue'
 
 import PlaygroundPage from './components/playground/PlaygroundPage.vue'
 
-import ClassList from './components/classes/ClassList.vue'
-import ClassEdit from './components/classes/ClassEdit.vue'
 
-import StudentList from './components/students/StudentList.vue'
-import StudentEdit from './components/students/StudentEdit.vue'
-import StudentSerch from './components/students/StudentSerch.vue'
+import EventList from './components/event/EventList.vue'
+import EventEdit from './components/event/EventEdit.vue'
 
-import TeacherList from './components/teachers/TeacherList.vue'
-import TeacherEdit from './components/teachers/TeacherEdit.vue'
-import TeacherAssign from './components/teachers/TeacherAssign.vue'
+import MailingEdit from './components/mailing/Mail.vue'
+import InvitationEdit from './components/Invitation/Invitation.vue'
 
-import FollowingList from './components/github/FollowingList.vue'
+import WishListeEdit from './components/wishListe/WishListeEdit.vue'
+import WishListe from './components/wishListe/WishListe.vue'
+
 
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
@@ -32,18 +30,19 @@ const routes = [
     { path: '/logout', component: Logout, beforeEnter: requireAuth },
     { path: '/playground', component: PlaygroundPage },
 
-    { path: '/classes', component: ClassList, beforeEnter: requireAuth },
-    { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
+   
+    { path: '/event', component: EventList, beforeEnter: requireAuth },
+    { path: '/event/:mode([create|edit]+)/:id?', component: EventEdit, beforeEnter: requireAuth },
+    { path: '/event/:mode([create|edit]+)/', component: EventEdit, beforeEnter: requireAuth },
 
-    { path: '/students', component: StudentList, beforeEnter: requireAuth },
-    { path: '/students/search', component: StudentSerch, beforeEnter: requireAuth },
-    { path: '/students/:mode([create|edit]+)/:id?', component: StudentEdit, beforeEnter: requireAuth },
+    { path: '/mailing', component: MailingEdit, beforeEnter: requireAuth },
+    { path: '/mailing/:mode([create|edit]+)/', component: MailingEdit, beforeEnter: requireAuth },
+    
+    { path: '/wishListe', component: WishListe, beforeEnter: requireAuth },
+    { path: '/WishListe/:mode([create|edit]+)/', component: WishListeEdit, beforeEnter: requireAuth },
+    { path: '/WishListe/:mode([create|edit]+)/:id?', component: WishListeEdit, beforeEnter: requireAuth },
 
-    { path: '/teachers', component: TeacherList, beforeEnter: requireAuth },
-    { path: '/teachers/:mode([create|edit]+)/:id?', component: TeacherEdit, beforeEnter: requireAuth },
-    { path: '/teachers/assign/:id', component: TeacherAssign, beforeEnter: requireAuth },
-
-    { path: '/github/following', component: FollowingList, beforeEnter: requireAuth, meta: { requiredProviders: ['GitHub'] } }
+    { path: '/Invitation', component: InvitationEdit }
 ];
 
 export default new VueRouter({

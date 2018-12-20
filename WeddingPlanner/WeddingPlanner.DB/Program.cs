@@ -59,6 +59,5 @@ namespace WeddingPlanner.DB
                 return _configuration;
             }
         }
-
     }
 }

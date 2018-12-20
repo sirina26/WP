@@ -15,5 +15,7 @@ const main = async() => {
     render: h => h(App)
   }).$mount('#app')
 };
+import VueA11yDialog from 'vue-a11y-dialog'
 
+Vue.use(VueA11yDialog)
 main();

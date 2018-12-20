@@ -1,16 +1,12 @@
 <template>
-    <div class="container p-3">
+    <div>
         <div class="text-center">
-            <h1 class="my-4">Bienvenue sur ITI.PrimarySchool</h1>
-
-            <button type="button" @click="login('Google')" class="btn btn-lg btn-block btn-primary">
-                <i class="fa fa-google" aria-hidden="true"></i> Se connecter via Google</button>
-            <button type="button" @click="login('GitHub')" class="btn btn-lg btn-block btn-primary">
-                <i class="fa fa-github" aria-hidden="true"></i> Se connecter via GitHub</button>
-            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via ITI.PrimarySchool</button>
+            <h1 class="my-4">Bienvenue sur WeddingOrganizer</h1>
+            <button type="button" @click="login('Base')" class="btn btn-lg btn-block btn-default">Se connecter via WeddingOrganizer</button>
         </div>
     </div>
 </template>
+
 
 <script>
 import AuthService from '../services/AuthService'
@@ -44,8 +40,12 @@ export default {
 </script>
 
 <style lang="scss">
-iframe {
-  width: 100%;
-  height: 600px;
+
+body{
+    background-image: url("https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d");
+    background-repeat: no-repeat;
+    .button5 {border-radius: 50%;}
+
 }
 </style>
+

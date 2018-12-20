@@ -1,23 +1,24 @@
 <template>
-    <section class="jumbotron text-center">
+    <section class="phot">
         <div class="container">
-            <h1 class="jumbotron-heading">Bienvenue sur ITI.PrimarySchool</h1>
-            <p class="lead text-muted">Cette application est réalisée à l'aide du framework Vue 2.</p>
+            <h1 class="jumbotron-heading">Bienvenue sur Wedding Organizer</h1>
+            <!-- <p class="lead text-muted">Cette application est réalisée à l'aide du framework Vue 2.</p> -->
             <p>
-                <a href="http://vuejs.org/v2/guide/" class="btn btn-primary my-2">Guide Vue 2</a>
-                <a href="http://vuejs.org/v2/api/" class="btn btn-secondary my-2">Documentation API Vue 2</a>
-                <router-link class="btn btn-secondary my-2" to="/playground">Playground</router-link>
+                <router-link class="btn btn-primary" to="/playground">Playground</router-link>                   
             </p>
         </div>
     </section>
 </template>
+
 
 <script>
 export default {
 
 }
 </script>
-
-<style lang="scss">
+<style type="text/css" lang="scss">
+.phot{
+    background-size: cover
+}
 
 </style>

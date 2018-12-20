@@ -2,7 +2,7 @@
     <div id="app">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <router-link class="navbar-brand" to="/">ITI.PrimarySchool</router-link>
+                <router-link class="navbar-brand" to="/">WeddingOrganizer</router-link>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -11,16 +11,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="auth.isConnected">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/classes">Gestion des classes</router-link>
+                            <router-link class="nav-link" to="/wishListe">Gestion de liste</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/students">Gestion des élèves</router-link>
+                            <router-link class="nav-link" to="/event">Gestion d'évènement</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/teachers">Gestion des professeurs</router-link>
+                            <router-link class="nav-link" to="/mailing">Gestion des e-mails</router-link>
                         </li>
-                        <li class="nav-item" v-required-providers="['GitHub']">
-                            <router-link class="nav-link" to="/github/following">Elèves suivis sur GitHub</router-link>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/messaging">Gestion des Message</router-link>
                         </li>
                     </ul>
 
