@@ -72,15 +72,13 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@task", task );
-                p.Add( "@customerId", customerId );
-                p.Add( "@stateTask", stateTask );                
+                p.Add( "@Task", task );
+                p.Add( "@CustomerId", customerId );
+                p.Add( "@StateTask", stateTask );
+                p.Add( "@TaskId", dbType: DbType.Int32, direction: ParameterDirection.Output );
                 await con.ExecuteAsync( "weddingplanner.sWishListCreate", p, commandType: CommandType.StoredProcedure );
 
-                int status = p.Get<int>( "@Status" );
-
-                Debug.Assert( status == 0 );
-                return Result.Success( Status.Created, p.Get<int>( "@taskId" ) );
+                return Result.Success( Status.Created, p.Get<int>( "@TaskId" ) );
             }
         }
 

@@ -15,6 +15,7 @@
                     <th>CustomerId</th>
                     <th>Task</th>
                     <th>StateTask</th>
+                    <th>Options</th>
                 </tr>
             </thead>
 
@@ -75,7 +76,7 @@
             async refreshList() {
                 try {
                     this.wishList = await getWishListAsync();
-
+                    console.log(this.wishList);
                 }
                 catch(e) {
                     console.error(e);
@@ -113,6 +114,7 @@
             paginatedData(){
                 const start = this.pageNumber * this.size,
                 end = start + this.size;
+                debugger;
                 return this.wishList.slice(start, end);
             } 
         }  

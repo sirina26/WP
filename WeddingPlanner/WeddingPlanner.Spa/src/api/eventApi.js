@@ -6,6 +6,10 @@ export async function getEventListAsync() {
     return await getAsync(endpoint);
 }
 
+export async function getIdAsync(email) {
+    return await getAsync(`${endpoint}/${email}`);
+}
+
 export async function getEventAsync(eventId) {
     return await getAsync(`${endpoint}/${eventId}`);
 }

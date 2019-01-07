@@ -15,6 +15,7 @@ class AuthService {
 
     get isConnected() {
         return this.identity != null;
+        console.log(this.identity);
     }
 
     get accessToken() {
@@ -24,10 +25,9 @@ class AuthService {
 
     get email() {
         var identity = this.identity;
-
         return identity ? identity.email : null;
     }
-
+ 
     get boundProviders() {
         var identity = this.identity;
 

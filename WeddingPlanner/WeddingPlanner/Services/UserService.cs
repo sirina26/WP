@@ -1,3 +1,4 @@
+using System;
 using WeddingPlanner.DAL;
 using System.Threading.Tasks;
 
@@ -26,7 +27,6 @@ namespace WeddingPlanner.WebApp.Services
             {
                 return user;
             }
-
             return null;
         }
         public async Task<UserData> FindUserType( int id )

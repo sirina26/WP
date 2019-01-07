@@ -27,6 +27,14 @@ namespace WeddingPlanner.WebApp.Controllers
             return Ok( result );
         }
 
+        [HttpGet( "{email}", Name = "GetId")]
+        public async Task<int> GetId(string email)
+        {
+            int result = await _eventGateway.FindId( email);
+            return  result;
+        }
+
+
         [HttpGet( "{id}", Name = "GetEvent" )]
         public async Task<IActionResult> GetEventById( int id )
         {

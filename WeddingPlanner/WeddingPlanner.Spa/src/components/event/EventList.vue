@@ -19,7 +19,7 @@
                     <th>Date </th> 
                     <th>Nombre d'invités</th>
                     <th>Remarques</th>
-                    <th>Option</th>
+                    <th>Option</th>                    
                 </tr>
             </thead>
 
@@ -36,12 +36,13 @@
                     <td>{{ i.maximumPrice }}</td>
                     <td>{{ new Date(i.WeddingDate).toLocaleDateString() }}</td>
                     <td>{{ i.numberOfGuestes }}</td>
-                    <td>{{ i.note }}</td>
-                    <td>
-                        <router-link :to="`event/edit/${i.eventtId}`"><i class="fa fa-pencil"></i></router-link>
+                    <td>{{ i.note }}</td>                     
+                    <td> 
                         <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
                         <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-comments-o"></i></a>
-                    </td>
+                        <router-link :to="`event/edit/${i.eventtId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
+                    </td>  
+                  
                 </tr>
             </tbody>
         </table>
@@ -60,13 +61,15 @@
 
 <script>
     import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
+    import AuthService from '../../services/AuthService'
+    import {getUserIdAsync} from'../../api/UserApi'
 
     export default {
         data() {
             return {
                 eventList:[],
-                pageNumber: 0
-
+                pageNumber: 0, 
+                id : 0
             }
         },
         props:{
@@ -77,7 +80,11 @@
             }
         },
         async mounted() {
+           
             await this.refreshList();
+            this.id = await getUserIdAsync();     
+
+            console.log(this.id);
         },
 
         methods: {
@@ -110,6 +117,7 @@
         },
         computed:
         {
+            auth: () => AuthService,
             pageCount(){  
                 if(this.eventList !== "undefined")          
                 {
