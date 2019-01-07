@@ -34,7 +34,7 @@
                     <td>{{ i.organizerId }}</td>
                     <td>{{ i.place }}</td>
                     <td>{{ i.maximumPrice }}</td>
-                    <td>{{ new Date(i.WeddingDate).toLocaleDateString() }}</td>
+                    <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
                     <td>{{ i.numberOfGuestes }}</td>
                     <td>{{ i.note }}</td>                     
                     <td> 
