@@ -6,6 +6,7 @@ using WeddingPlanner.WebApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System;
 
 namespace WeddingPlanner.WebApp.Controllers
 {
@@ -22,7 +23,6 @@ namespace WeddingPlanner.WebApp.Controllers
         {
             _userGateway = userGateway;
             _userService = userService;
-
         }
 
         [HttpGet("GetUserId")]
@@ -30,6 +30,15 @@ namespace WeddingPlanner.WebApp.Controllers
         {
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             return userId;
+        }
+
+
+        [HttpGet( "GetUserType" )]    
+        public async Task<bool> IsOrganizer()
+        {
+            int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
+            bool isOrganizer = await _userGateway.IsOrganizer( userId );
+            return isOrganizer;
         }
     }
 }

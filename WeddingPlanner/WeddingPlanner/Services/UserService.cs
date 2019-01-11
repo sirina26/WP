@@ -19,7 +19,7 @@ namespace WeddingPlanner.WebApp.Services
         {
             return _userGateway.CreatePasswordUser( firstName, lastName, email, _passwordHasher.HashPassword( password ), userType );
         }
-
+       
         public async Task<UserData> FindUser( string email, string password )
         {
             UserData user = await _userGateway.FindByEmail( email );
@@ -29,17 +29,7 @@ namespace WeddingPlanner.WebApp.Services
             }
             return null;
         }
-        public async Task<UserData> FindUserType( int id )
-        {
-            //UserData user = await _userGateway.FindByEmail( id );
-            //if( user != null && _passwordHasher.VerifyHashedPassword( user.Password, password ) == PasswordVerificationResult.Success )
-            //{
-            //    return user;
-            //}
-
-            return null;
-        }
-
+        
     }
 }
 

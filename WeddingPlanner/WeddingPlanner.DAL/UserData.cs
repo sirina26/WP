@@ -12,5 +12,6 @@ namespace WeddingPlanner.DAL
 
         public string GoogleId { get; set; }
 
+        public bool IsOrganizer { get; set; }
     }
 }

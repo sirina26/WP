@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using WeddingPlanner.DAL;
 using WeddingPlanner.WebApp.Authentication;
 using WeddingPlanner.WebApp.Models.EventViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WeddingPlanner.WebApp.Controllers;
-
+using System.Linq;
 namespace WeddingPlanner.WebApp.Controllers
 {
     [Route( "api/[controller]" )]
@@ -45,7 +45,8 @@ namespace WeddingPlanner.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEvent( [FromBody] EventViewModel model )
         {
-            Result<int> result = await _eventGateway.Create( model.EventName,
+            int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );       
+            Result<int> result = await _eventGateway.Create( userId, model.EventName,
                 model.Place, model.WeddingDate, model.MaximumPrice,
             model.NumberOfGuestes,  model.Note );
             return this.CreateResult( result, o =>

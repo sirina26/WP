@@ -6,3 +6,7 @@ const endpoint = process.env.VUE_APP_BACKEND + "/api/user";
 export async function getUserIdAsync() {
     return await getAsync(`${endpoint}/GetUserId`);
 }
+
+export async function getUserTypeAsync() {
+    return await getAsync(`${endpoint}/GetUserType`);
+}

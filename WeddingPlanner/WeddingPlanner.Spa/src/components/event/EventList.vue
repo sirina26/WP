@@ -38,8 +38,8 @@
                     <td>{{ i.numberOfGuestes }}</td>
                     <td>{{ i.note }}</td>                     
                     <td> 
-                        <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
-                        <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-comments-o"></i></a>
+                        <a @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
+                        <a @click="commentEvent(i.eventtId)" v-if="type === true"><i class="fa fa-comments-o"></i></a>
                         <router-link :to="`event/edit/${i.eventtId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
                     </td>  
                   
@@ -62,14 +62,15 @@
 <script>
     import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
     import AuthService from '../../services/AuthService'
-    import {getUserIdAsync} from'../../api/UserApi'
+    import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
     export default {
         data() {
             return {
                 eventList:[],
                 pageNumber: 0, 
-                id : 0
+                id : 0,
+                type : true
             }
         },
         props:{
@@ -83,8 +84,10 @@
            
             await this.refreshList();
             this.id = await getUserIdAsync();     
+            this.type = await getUserTypeAsync();  debugger;   
+            console.log(this.id);    
+            console.log(this.type);
 
-            console.log(this.id);
         },
 
         methods: {

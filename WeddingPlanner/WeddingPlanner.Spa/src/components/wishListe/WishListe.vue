@@ -24,13 +24,13 @@
                     <td colspan="6" class="text-center">Il n'y a actuellement aucune tâche</td>
                 </tr>
 
-                <tr v-for="i of paginatedData">
+                <tr v-if="id==i.customerId" v-for="i of paginatedData">
                     <td>{{ i.taskId }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.task }}</td>
                     <td>{{ i.stateTask }}</td>
                     <td>
-                        <router-link :to="`WishListe/edit/${i.taskId}`"><i class="fa fa-pencil"></i></router-link>
+                        <router-link :to="`WishListe/edit/${i.taskId}`" ><i class="fa fa-pencil"></i></router-link>
                         <a href="#" @click="deleteWishListAsync(i.taskId)"><i class="fa fa-trash"></i></a>
                         <a href="#" @click="deleteWishListAsync(i.taskId)"><i class="fa fa-comments-o"></i></a>
                     </td>
@@ -52,12 +52,14 @@
 
 <script>
     import { getWishListAsync, deleteWishListAsync } from '../../api/wishListApi'
+    import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
     export default {
         data() {
             return {
                 wishList:[],
-                pageNumber: 0
+                pageNumber: 0,
+                id : 0
             }
         },
         props:{
@@ -76,7 +78,9 @@
             async refreshList() {
                 try {
                     this.wishList = await getWishListAsync();
+                    this.id = await getUserIdAsync();
                     console.log(this.wishList);
+                    console.log(this.id);
                 }
                 catch(e) {
                     console.error(e);

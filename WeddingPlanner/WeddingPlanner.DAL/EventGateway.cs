@@ -95,12 +95,12 @@ namespace WeddingPlanner.DAL
         }
 
 
-        public async Task<Result<int>> Create( string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)
+        public async Task<Result<int>> Create(int userId, string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)
         {
-
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
+                p.Add( "@userId", userId );
                 p.Add( "@eventName", eventName );
                 p.Add( "@place", place );
                 p.Add( "@weddingDate", weddingDate );

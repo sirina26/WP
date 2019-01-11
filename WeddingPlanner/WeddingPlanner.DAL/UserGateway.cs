@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,13 +25,14 @@ namespace WeddingPlanner.DAL
                     new { UserId = userId } );
             }
         }
-        public async Task<UserData> UserType( int userId )
+
+        public async Task<bool> IsOrganizer( int userId )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                  return await con.QueryFirstOrDefaultAsync<UserData>(
-                  "select t.OrganizerId from weddingplanner.vOrganizers t where t.OrganizerId = @UserId",               
-                  new { UserId = userId } );
+                return await con.QuerySingleAsync<bool>(
+                "select u.IsOrganizer from weddingplanner.vUsers u where u.UserId = @UserId",
+                new { UserId = userId } );
             }
         }
 

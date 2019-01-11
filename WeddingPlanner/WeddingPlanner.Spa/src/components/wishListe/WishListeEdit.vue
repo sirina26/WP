@@ -27,13 +27,16 @@
 <script>
     import { getWishListAsync, createTaskAsync, updateWishListAsync } from '../../api/wishListApi'
     import { DateTime } from 'luxon'
+    import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
+
 
     export default {
         data () {
             return {
                 item: {},
                 mode: null,
-                id: null,
+                id: 0,
+                // id: null,
                 errors: [],
             }
         },
@@ -41,12 +44,11 @@
         async mounted() {
             debugger;
             this.mode = this.$route.params.mode;
-            this.id = this.$route.params.id;
             
             if(this.mode == 'edit') {
                 try {
-                    const item = await getWishListAsync(this.id);
-                    debugger;
+                    // const item = await getWishListAsync(this.id);
+                    // debugger;
 
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
                     item.WeddingDate = DateTime.fromISO(item.WeddingDate).toISODate();

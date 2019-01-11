@@ -30,7 +30,7 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result<WishListeData>> FindById( int taskId )
+        public async Task<Result<WishListeData>> FindById( int userId )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
@@ -40,8 +40,8 @@ namespace WeddingPlanner.DAL
                              s.Task,
                              s.StateTask
                       from weddingplanner.vWish s
-                      where s.TaskId = @TaskId;",
-                    new { TaskId = taskId } );
+                      where s.CustomerId = @userId;",
+                    new { UserId = userId } );
 
                 if( WLD == null ) return Result.Failure<WishListeData>( Status.NotFound, "event not found." );
                 return Result.Success( WLD );

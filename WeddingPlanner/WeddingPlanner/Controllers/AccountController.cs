@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
+
 namespace WeddingPlanner.WebApp.Controllers
 {
     public class AccountController : Controller
@@ -56,27 +57,7 @@ namespace WeddingPlanner.WebApp.Controllers
                 return RedirectToAction( nameof( Authenticated ) );
             }
             return View( model );
-        }
-        /***************************/
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginUserType( LoginViewModel model )
-        {
-            //if( ModelState.IsValid )
-            //{
-            //    UserData user = await _userService.FindUserType( model.id );
-            //    if( user == null )
-            //    {
-            //        ModelState.AddModelError( string.Empty, "Invalid login attempt." );
-            //        return View( model );
-            //    }
-            //    await SignIn( user.Email, user.UserId.ToString() );
-            //    return RedirectToAction( nameof( Authenticated ) );
-            //}
-            return View( model );
-        }
-        /**********************/
+        }        
 
         [HttpGet]
         [AllowAnonymous]
