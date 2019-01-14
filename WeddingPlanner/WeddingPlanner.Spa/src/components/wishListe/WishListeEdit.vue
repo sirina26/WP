@@ -44,7 +44,8 @@
         async mounted() {
             debugger;
             this.mode = this.$route.params.mode;
-            
+            this.id = await getUserIdAsync();     
+
             if(this.mode == 'edit') {
                 try {
                     // const item = await getWishListAsync(this.id);
@@ -68,7 +69,8 @@
                 event.preventDefault();
                 var errors = [];
                 this.errors = errors;
-debugger;
+                this.item.customerId = this.id;
+                console.log(this.item);
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {

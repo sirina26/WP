@@ -34,7 +34,7 @@
     
             <div id="app">
                 <a11y-dialog id="app-dialog" app-root="#app" @dialog-ref="assignDialogRef">
-                    <h1 slot="title">EMail envoi</h1>
+                    <h1 slot="title">email envoyé</h1>
                 </a11y-dialog>
             </div>  
         </form>

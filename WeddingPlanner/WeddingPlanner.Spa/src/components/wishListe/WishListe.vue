@@ -24,7 +24,7 @@
                     <td colspan="6" class="text-center">Il n'y a actuellement aucune tâche</td>
                 </tr>
 
-                <tr v-if="id==i.customerId" v-for="i of paginatedData">
+                <tr v-if="id==i.customerId" v-for="i of wishList">
                     <td>{{ i.taskId }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.task }}</td>
@@ -32,21 +32,11 @@
                     <td>
                         <router-link :to="`WishListe/edit/${i.taskId}`" ><i class="fa fa-pencil"></i></router-link>
                         <a href="#" @click="deleteWishListAsync(i.taskId)"><i class="fa fa-trash"></i></a>
-                        <a href="#" @click="deleteWishListAsync(i.taskId)"><i class="fa fa-comments-o"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
-          <button 
-            :disabled="pageNumber === 0" 
-            @click="prevPage">
-            Previous
-        </button>
-        <button 
-            :disabled="pageNumber > pageCount -1" 
-            @click="nextPage">
-            Next
-        </button>
+         
     </div>
 </template>
 
@@ -79,8 +69,11 @@
                 try {
                     this.wishList = await getWishListAsync();
                     this.id = await getUserIdAsync();
+                  
                     console.log(this.wishList);
+                    console.log(this.wishListPerso);
                     console.log(this.id);
+                    console.log( this.customerId);
                 }
                 catch(e) {
                     console.error(e);
@@ -95,33 +88,10 @@
                 catch(e) {
                     console.error(e);
                 }
-            },
-             nextPage(){
-                 this.pageNumber++;
-            },
-            
-            prevPage(){
-                this.pageNumber--;
             }
-        },
-        computed:
-        {
-            pageCount(){  
-                if(this.wishList !== "undefined")          
-                {
-                    let l = this.wishList.length,
-                    s = this.size;
-                    return Math.floor(l/s);
-                }
-                
-            },
-            paginatedData(){
-                const start = this.pageNumber * this.size,
-                end = start + this.size;
-                debugger;
-                return this.wishList.slice(start, end);
-            } 
-        }  
+            
+        }
+       
         
     }
 </script>
