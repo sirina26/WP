@@ -84,7 +84,21 @@
             await this.refreshList();
             this.id = await getUserIdAsync();     
             this.type = await getUserTypeAsync();  
-            
+             
+            if(this.mode == 'edit') {
+                try {
+                    const item = await getUserIdAsync(this.id);
+
+                    // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
+                    item.weddingDate = DateTime.fromISO(item.weddingDate).toISODate();
+
+                    this.item = item;
+                }
+                catch(e) {
+                    console.error(e);
+                    this.$router.replace('/event');
+                }
+            }
 
         },
 

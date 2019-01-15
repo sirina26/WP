@@ -59,7 +59,7 @@
             return {
                 item: {},
                 mode: null,
-                id: null,
+                eventId: null,
                 errors: [],
             }
         },
@@ -67,22 +67,23 @@
         async mounted() {
             
             this.mode = this.$route.params.mode;
-            this.id = this.$route.params.id;
+            this.eventId = this.$route.params.id;
             
-            if(this.mode == 'edit') {
-                try {
-                    const item = await getEventAsync(this.id);
+            // if(this.mode == 'edit') {
+            //     try {
+            //         const item = await getEventAsync(this.eventId);
+            //         debugger;
+                    
+            //         Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
+            //         item.WeddingDate = DateTime.fromISO(item.WeddingDate).toISODate();
 
-                    // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
-                    item.WeddingDate = DateTime.fromISO(item.WeddingDate).toISODate();
-
-                    this.item = item;
-                }
-                catch(e) {
-                    console.error(e);
-                    this.$router.replace('/event');
-                }
-            }
+            //         this.item = item;
+            //     }
+            //     catch(e) {
+            //         console.error(e);
+            //         this.$router.replace('/event');
+            //     }
+            // }
         },
 
         methods: {
@@ -102,6 +103,7 @@
                         }
                         else {
                             await updateEventAsync(this.item);
+                            debugger;
                         }
 
                         this.$router.replace('../event');
