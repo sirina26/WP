@@ -10,42 +10,53 @@
 
 <script>
 import AuthService from '../services/AuthService'
-import Vue from 'vue'
+import {getUserTypeAsync} from'../api/UserApi'
+
 
 export default {
     data() {
         return {
-            endpoint: null
+            endpoint: null,
+            document: document.body,
+            type : true
         }
     },
 
-    mounted() {
+   async mounted() {
         AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
+        this.type = await getUserTypeAsync();
+        await this.test();
+Console.log(this.type);
+
     },
 
-    beforeDestroy() {
+    async beforeDestroy() {
         AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
     },
 
     methods: {
-        login(provider) {
+       async login(provider) {
             AuthService.login(provider);
         },
 
-        onAuthenticated() {
+       async onAuthenticated() {
             this.$router.replace('/');
+        }, 
+        async test(){
+            // console.log("hdfyuhklj");
+            //  if(this.type== false)
+            //     document.body.style.backgroundImage = "url('https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d')";
+            // else
+            //     document.body.style.backgroundImage = "url('http://www.shafitriwedding.com/wp-content/uploads/2017/07/wedding-organizer-bekasi.jpg')";
         }
     }
 }
 </script>
 
 <style lang="scss">
-
 body{
-    background-image: url("https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d");
     background-repeat: no-repeat;
     .button5 {border-radius: 50%;}
-
 }
 </style>
 

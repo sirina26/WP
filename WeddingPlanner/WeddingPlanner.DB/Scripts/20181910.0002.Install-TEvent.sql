@@ -7,7 +7,7 @@ create table weddingplanner.tEvent
     Place nvarchar(32) not null,
     MaximumPrice float not null,
     NumberOfGuestes int not null,
-    Note nvarchar(32) not null,
+    Note nvarchar(max) not null,
     WeddingDate datetime2 not null,
     constraint PK_tEvent primary key(EventId),
 );

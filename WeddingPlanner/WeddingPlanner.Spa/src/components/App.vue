@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :class="classObject" class="main">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <router-link class="navbar-brand" to="/">WeddingOrganizer</router-link>
@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="auth.isConnected">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/wishListe">Gestion de liste</router-link>
+                            <router-link class="nav-link" to="/wishListe" v-if="type == false">Gestion de liste</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to="/event">Gestion d'évènement</router-link>
@@ -53,19 +53,33 @@
 import AuthService from '../services/AuthService'
 import '../directives/requiredProviders'
 import { state } from "../state"
+import {getUserIdAsync, getUserTypeAsync} from'../api/UserApi'
+
 
 export default {
     data() {
         return {
-            state
+            state,
+            type: false,
         }
-    },
+    }, 
+    async beforeUpdate() { 
+                            
+            this.type = await getUserTypeAsync();
+        },
 
     computed: {
         auth: () => AuthService,
         
         isLoading() {
             return this.state.isLoading;
+        },
+
+        classObject() {
+            return {
+                'customer-background': !this.type,
+                'organizer-background': this.type
+            }
         }
     }
 }

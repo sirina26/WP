@@ -4,7 +4,7 @@
             <h1>Gestion d'événement </h1>
 
             <div>
-                <router-link class="btn btn-primary" :to="`event/create`"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
+                <router-link class="btn btn-primary" :to="`event/create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
             </div>
         </div>
 
@@ -13,7 +13,6 @@
                 <tr>
                     <th>Nom</th>
                     <th>ID de Client</th>
-                    <th>ID de l'Organizateur</th>
                     <th>Endroit</th>
                     <th>Prix maximum </th>
                     <th>Date </th> 
@@ -28,17 +27,16 @@
                     <td colspan="6" class="text-center">Il n'y a actuellement aucun event.</td>
                 </tr>
 
-                <tr v-for="i of paginatedData">
+                <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
-                    <td>{{ i.organizerId }}</td>
                     <td>{{ i.place }}</td>
                     <td>{{ i.maximumPrice }}</td>
                     <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
                     <td>{{ i.numberOfGuestes }}</td>
                     <td>{{ i.note }}</td>                     
                     <td> 
-                        <a @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
+                        <a @click="deleteEvent(i.eventtId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
                         <a @click="commentEvent(i.eventtId)" v-if="type === true"><i class="fa fa-comments-o"></i></a>
                         <router-link :to="`event/edit/${i.eventtId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
                     </td>  
@@ -84,9 +82,8 @@
            
             await this.refreshList();
             this.id = await getUserIdAsync();     
-            this.type = await getUserTypeAsync();  debugger;   
-            console.log(this.id);    
-            console.log(this.type);
+            this.type = await getUserTypeAsync();  
+            
 
         },
 

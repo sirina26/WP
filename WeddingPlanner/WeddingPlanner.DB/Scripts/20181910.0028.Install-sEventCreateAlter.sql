@@ -5,7 +5,7 @@ alter proc weddingplanner.sEventCreate
     @Place nvarchar (32),
     @MaximumPrice float,
     @NumberOfGuestes int,
-    @Note nvarchar (32),
+    @Note nvarchar (max),
     @WeddingDate datetime2,
     @EventId   int out,
     @UserId int
