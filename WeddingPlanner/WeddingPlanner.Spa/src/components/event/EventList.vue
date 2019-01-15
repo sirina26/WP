@@ -10,7 +10,7 @@
 
         <table class="table table-striped table-hover table-bordered">
             <thead>
-                <tr>
+                <tr> <th>id</th>
                     <th>Nom</th>
                     <th>ID de Client</th>
                     <th>Endroit</th>
@@ -28,6 +28,7 @@
                 </tr>
 
                 <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
+                    {{i.eventId}}
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.place }}</td>
@@ -36,9 +37,9 @@
                     <td>{{ i.numberOfGuestes }}</td>
                     <td>{{ i.note }}</td>                     
                     <td> 
-                        <a @click="deleteEvent(i.eventtId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
-                        <a @click="commentEvent(i.eventtId)" v-if="type === true"><i class="fa fa-comments-o"></i></a>
-                        <router-link :to="`event/edit/${i.eventtId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
+                        <a @click="deleteEvent(i.eventId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
+                        <a @click="commentEvent(i.eventId)" v-if="type === true"><i class="fa fa-comments-o"></i></a>
+                        <router-link :to="`event/edit/${i.eventId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
                     </td>  
                   
                 </tr>

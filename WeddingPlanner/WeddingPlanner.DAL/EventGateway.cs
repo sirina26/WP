@@ -123,7 +123,7 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@EsventId", eventId );
+                p.Add( "@EventId", eventId );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "weddingplanner.sEventDelete", p, commandType: CommandType.StoredProcedure );
 
