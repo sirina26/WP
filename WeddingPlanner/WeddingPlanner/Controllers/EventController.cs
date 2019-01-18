@@ -27,7 +27,7 @@ namespace WeddingPlanner.WebApp.Controllers
             return Ok( result );
         }
 
-        [HttpGet( "{email}", Name = "GetId")]
+        [HttpGet( "mail/{email}", Name = "GetId")]
         public async Task<int> GetId(string email)
         {
             int result = await _eventGateway.FindId( email);
@@ -59,9 +59,10 @@ namespace WeddingPlanner.WebApp.Controllers
         [HttpPut( "{id}" )]
         public async Task<IActionResult> UpdateEvent( int id, [FromBody] EventViewModel model )
         {
-            Result result = await _eventGateway.Update(id, model.EventName,
+
+            Result result = await _eventGateway.Update( id, model.EventName,
                 model.Place, model.WeddingDate, model.MaximumPrice,
-           model.NumberOfGuestes, model.Note, model.CustomerId, model.OrganizerId );
+           model.NumberOfGuestes, model.Note );//, model.CustomerId, model.OrganizerId );
             return this.CreateResult( result );
         }
 

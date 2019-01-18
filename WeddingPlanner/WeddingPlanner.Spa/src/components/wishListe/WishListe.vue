@@ -11,9 +11,9 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>CustomerId</th>
-                    <th>Task</th>
-                    <th>StateTask</th>
+                    <th>Mon id</th>
+                    <th>Tâche</th>
+                    <th>Etat de tâche</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -26,10 +26,13 @@
                 <tr v-if="id==i.customerId" v-for="i of wishList">
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.task }}</td>
-                    <td>{{ i.stateTask }}</td>
+                    <td v-if="i.stateTask == false">Pas faite</td>
+                    <td v-else>Faite</td>
                     <td>
                         <router-link :to="`WishListe/edit/${i.taskId}`" ><i class="fa fa-pencil"></i></router-link>
-                        <a href="#" @click="deleteWishListAsync(i.taskId)"><i class="fa fa-trash"></i></a>
+                        <a @click="deleteWishList(i.taskId)"><i class="fa fa-trash"></i></a>
+                        <a v-if="i.stateTask == true" href="#" ><i class="fa fa-check-circle-o"></i></a>                   
+                        <a v-else href="#" ><i class="fa fa-circle-o"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -46,7 +49,6 @@
         data() {
             return {
                 wishList:[],
-                pageNumber: 0,
                 id : 0
             }
         },

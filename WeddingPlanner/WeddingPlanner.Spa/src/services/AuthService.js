@@ -15,7 +15,6 @@ class AuthService {
 
     get isConnected() {
         return this.identity != null;
-        console.log(this.identity);
     }
 
     get accessToken() {

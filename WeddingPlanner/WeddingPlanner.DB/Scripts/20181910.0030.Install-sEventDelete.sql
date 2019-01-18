@@ -1,4 +1,4 @@
-alter proc weddingplanner.sEventDelete
+create procedure weddingplanner.sEventDelete
 (
     @EventId int
 )

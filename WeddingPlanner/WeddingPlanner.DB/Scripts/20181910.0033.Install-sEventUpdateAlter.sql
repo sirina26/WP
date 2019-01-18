@@ -1,4 +1,4 @@
-create proc weddingplanner.sEventUpdate
+alter proc weddingplanner.sEventUpdate
 
 (
     @EventId   int,
@@ -7,10 +7,7 @@ create proc weddingplanner.sEventUpdate
     @MaximumPrice float,
     @NumberOfGuestes int,
     @Note nvarchar (32),
-    @WeddingDate datetime2,
-    @UserId int
-
-   
+    @WeddingDate datetime2
 )
 as
 begin
@@ -22,16 +19,9 @@ begin
 		rollback;
 		return 1;
 	end;
-
-	if exists(select * from weddingplanner.tEvent s where s.EventId <> @EventId)
-	begin
-		rollback;
-		return 2;
-	end;
-
 	
 	update weddingplanner.tEvent
-	set EventName = @EventName, Place = @Place, MaximumPrice = @MaximumPrice, NumberOfGuestes = @NumberOfGuestes, Note = @Note
+	set EventName = @EventName, Place = @Place, MaximumPrice = @MaximumPrice, NumberOfGuestes = @NumberOfGuestes, Note = @Note, WeddingDate = @WeddingDate
 	where EventId = @EventId;
 
 	

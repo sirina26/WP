@@ -64,8 +64,9 @@ export default {
         }
     }, 
     async beforeUpdate() { 
-                            
-            this.type = await getUserTypeAsync();
+            if (AuthService.isConnected) {
+                this.type = await getUserTypeAsync();
+            }
         },
 
     computed: {

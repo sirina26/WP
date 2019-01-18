@@ -24,9 +24,7 @@ export default {
 
    async mounted() {
         AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
-        this.type = await getUserTypeAsync();
         await this.test();
-Console.log(this.type);
 
     },
 
@@ -43,11 +41,7 @@ Console.log(this.type);
             this.$router.replace('/');
         }, 
         async test(){
-            // console.log("hdfyuhklj");
-            //  if(this.type== false)
-            //     document.body.style.backgroundImage = "url('https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d')";
-            // else
-            //     document.body.style.backgroundImage = "url('http://www.shafitriwedding.com/wp-content/uploads/2017/07/wedding-organizer-bekasi.jpg')";
+          
         }
     }
 }

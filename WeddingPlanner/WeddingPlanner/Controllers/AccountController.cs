@@ -21,7 +21,6 @@ namespace WeddingPlanner.WebApp.Controllers
         readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;  
         readonly Random _random;
         readonly IOptions<SpaOptions> _spaOptions;
-        int IdUser;
 
         public AccountController( UserGateway userGateway, UserService userService, TokenService tokenService, IAuthenticationSchemeProvider authenticationSchemeProvider, IOptions<SpaOptions> spaOptions )
         {

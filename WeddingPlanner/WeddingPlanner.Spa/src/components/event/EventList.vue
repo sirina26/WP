@@ -4,7 +4,7 @@
             <h1>Gestion d'événement </h1>
 
             <div>
-                <router-link class="btn btn-primary" :to="`event/create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
+                <router-link class="btn btn-primary" :to="`./create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
             </div>
         </div>
 
@@ -90,8 +90,7 @@
                     const item = await getUserIdAsync(this.id);
 
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
-                    item.weddingDate = DateTime.fromISO(item.weddingDate).toISODate();
-
+                    
                     this.item = item;
                 }
                 catch(e) {
