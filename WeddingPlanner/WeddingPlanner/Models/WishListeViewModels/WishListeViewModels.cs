@@ -9,6 +9,6 @@ namespace WeddingPlanner.WebApp.Models.WishListeViewModels
 
         public string Task { get; set; }
 
-        public byte StateTask { get; set; }
+        public bool StateTask { get; set; }
     }
 }

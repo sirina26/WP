@@ -40,10 +40,10 @@ namespace WeddingPlanner.DAL
                              s.Task,
                              s.StateTask
                       from weddingplanner.vWish s
-                      where s.CustomerId = @userId;",
+                      where s.TaskId = @userId;",
                     new { UserId = userId } );
 
-                if( WLD == null ) return Result.Failure<WishListeData>( Status.NotFound, "event not found." );
+                if( WLD == null ) return Result.Failure<WishListeData>( Status.NotFound, "task not found." );
                 return Result.Success( WLD );
             }
         }
@@ -66,7 +66,7 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result<int>> Create( string task, int customerId, byte stateTask )
+        public async Task<Result<int>> Create( string task, int customerId, bool stateTask )
         {
 
             using( SqlConnection con = new SqlConnection( _connectionString ) )
@@ -99,18 +99,20 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result> Update(int taskId, string task, int customerId, byte stateTask )
+        public async Task<Result> Update(int taskId, string task, int customerId, bool stateTask )
         {
 
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
+                p.Add( "@taskId", taskId );
                 p.Add( "@task", task );
                 p.Add( "@customerId", customerId );
                 p.Add( "@stateTask", stateTask );
-                await con.ExecuteAsync( "weddingplanner.vWish", p, commandType: CommandType.StoredProcedure );
+                p.Add( "@status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
+                await con.ExecuteAsync( "weddingplanner.sWishListUpdate", p, commandType: CommandType.StoredProcedure );
 
-                int status = p.Get<int>( "@Status" );
+                int status = p.Get<int>( "@status" );
                 if( status == 1 ) return Result.Failure( Status.NotFound, "Task not found." );
 
                 Debug.Assert( status == 0 );

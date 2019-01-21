@@ -17,7 +17,12 @@
                 <label class="required">Tâche : </label>
                 <input type="text" v-model="item.task" class="form-control" required>
             </div>
-
+           <!--  -->
+            <input type="radio" id="true" value="true" v-model="item.stateTask" checked>
+            <label for="true">Faite</label>
+            <input type="radio" id="false" value="false" v-model="item.stateTask">
+            <label for="false">Pas faite</label>
+           <!--  -->
             <button type="submit" button5 class="btn btn-primary">Sauvegarder</button>
 
         </form>
@@ -25,7 +30,7 @@
 </template>
 
 <script>
-    import { getWishListAsync, createTaskAsync, updateWishListAsync } from '../../api/wishListApi'
+    import { getWishListAsync, createTaskAsync, updateWishListAsync, getWishAsync } from '../../api/wishListApi'
     import { DateTime } from 'luxon'
     import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
@@ -36,8 +41,10 @@
                 item: {},
                 mode: null,
                 id: 0,
+                wishListId: null,
                 // id: null,
                 errors: [],
+                stateTask: null
             }
         },
 
@@ -45,10 +52,11 @@
             debugger;
             this.mode = this.$route.params.mode;
             this.id = await getUserIdAsync();     
+            this.wishListId = this.$route.params.id;
 
             if(this.mode == 'edit') {
                 try {
-                    // const item = await getWishListAsync(this.id);
+                     const item = await getWishAsync(this.wishListId);
                     // debugger;
 
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
@@ -70,6 +78,7 @@
                 var errors = [];
                 this.errors = errors;
                 this.item.customerId = this.id;
+                // this.item.stateTask = this.stateTask;
                 console.log(this.item);
                 if(errors.length == 0) {
                     try {
@@ -77,13 +86,14 @@
                             await createTaskAsync(this.item);
                         }
                         else {
-                            await updateWishListAsync(this.item);
+                           await updateWishListAsync(this.item);
                         }
-
-                        this.$router.replace('../wishListe');
+                        this.$router.replace('/wishListe/');
                     }
                     catch(e) {
                         console.error(e);
+                        // this.$router.replace('./');
+
                     }
                 }
             }

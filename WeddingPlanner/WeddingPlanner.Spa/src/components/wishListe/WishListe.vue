@@ -4,7 +4,7 @@
             <h1>Gestion des tâches </h1>
 
             <div>
-                <router-link class="btn btn-primary" :to="`wishListe/create`"><i class="fa fa-plus"></i> Ajouter une tâche</router-link>
+                <router-link class="btn btn-primary" :to="`/create`"><i class="fa fa-plus"></i> Ajouter une tâche</router-link>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                     <td v-if="i.stateTask == false">Pas faite</td>
                     <td v-else>Faite</td>
                     <td>
-                        <router-link :to="`WishListe/edit/${i.taskId}`" ><i class="fa fa-pencil"></i></router-link>
+                        <router-link :to="`./edit/${i.taskId}`" ><i class="fa fa-pencil"></i></router-link>
                         <a @click="deleteWishList(i.taskId)"><i class="fa fa-trash"></i></a>
                         <a v-if="i.stateTask == true" href="#" ><i class="fa fa-check-circle-o"></i></a>                   
                         <a v-else href="#" ><i class="fa fa-circle-o"></i></a>
