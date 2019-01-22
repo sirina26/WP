@@ -10,7 +10,7 @@
 
         <table class="table table-striped table-hover table-bordered">
             <thead>
-                <tr> <th>id</th>
+                <tr> 
                     <th>Nom</th>
                     <th>ID de Client</th>
                     <th>Endroit</th>
@@ -28,7 +28,6 @@
                 </tr>
 
                 <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
-                    {{i.eventId}}
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.place }}</td>
