@@ -35,19 +35,6 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<int> FindId( string email)
-        {
-            using( SqlConnection con = new SqlConnection( _connectionString ) )
-            {
-                int id = await con.QueryFirstOrDefaultAsync<int>(
-                    @"select UserId
-                        from weddingplanner.vUsers
-                        where Email = 'sassisirine151@yahoo.fr'" );
-                return id;
-            }
-           
-
-        }
         public async Task<Result<EventData>> FindById( int eventId )
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )

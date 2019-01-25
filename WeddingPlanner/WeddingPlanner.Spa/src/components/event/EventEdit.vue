@@ -6,13 +6,6 @@
         </div>
 
         <form @submit="onSubmit($event)">
-            <div class="alert alert-danger" v-if="errors.length > 0">
-                <b>Les champs suivants semblent invalides : </b>
-
-                <ul>
-                    <li v-for="e of errors">{{e}}</li>
-                </ul>
-            </div>
 
             <template v-if="item !== null">
                 <div class="form-group">
@@ -92,10 +85,6 @@
 
                 var errors = [];
                 
-                // if(!this.item.WeddingDate) errors.push("Date de l'évènement")
-
-                // this.errors = errors;
-
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {

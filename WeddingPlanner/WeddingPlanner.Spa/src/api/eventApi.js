@@ -25,3 +25,4 @@ export async function updateEventAsync(model) {
 export async function deleteEventAsync(eventId) {
     return await deleteAsync(`${endpoint}/${eventId}`);
 }
+

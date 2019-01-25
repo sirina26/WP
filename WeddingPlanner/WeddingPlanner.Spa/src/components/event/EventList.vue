@@ -37,7 +37,7 @@
                     <td>{{ i.note }}</td>                     
                     <td> 
                         <a @click="deleteEvent(i.eventId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
-                        <a @click="commentEvent(i.eventId)" v-if="type === true"><i class="fa fa-comments-o"></i></a>
+                        <router-link :to="`./comment/${i.eventId}`" v-if="type === true"><i class="fa fa-comments-o"></i></router-link>
                         <router-link :to="`event/edit/${i.eventId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
                     </td>  
                   
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
+    import { getEventListAsync, deleteEventAsync, commentEventAsync } from '../../api/eventApi'
     import AuthService from '../../services/AuthService'
     import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
@@ -120,7 +120,8 @@
                     console.error(e);
                 }
             },
-             nextPage(){
+
+            nextPage(){
                  this.pageNumber++;
             },
             
@@ -146,7 +147,6 @@
                 return this.eventList.slice(start, end);
             } 
         }  
-        
     }
 </script>
 

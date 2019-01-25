@@ -7,10 +7,13 @@ using WeddingPlanner.WebApp.Models.EventViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+
 namespace WeddingPlanner.WebApp.Controllers
 {
+
     [Route( "api/[controller]" )]
     [Authorize( AuthenticationSchemes = JwtBearerAuthentication.AuthenticationScheme )]
+
     public class EventController : Controller
     {
         readonly EventGateway _eventGateway;
@@ -26,14 +29,6 @@ namespace WeddingPlanner.WebApp.Controllers
             IEnumerable<EventData> result = await _eventGateway.GetAll();
             return Ok( result );
         }
-
-        [HttpGet( "mail/{email}", Name = "GetId")]
-        public async Task<int> GetId(string email)
-        {
-            int result = await _eventGateway.FindId( email);
-            return  result;
-        }
-
 
         [HttpGet( "{id}", Name = "GetEvent" )]
         public async Task<IActionResult> GetEventById( int id )

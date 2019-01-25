@@ -34,6 +34,7 @@ namespace WeddingPlanner.WebApp
             services.AddSingleton( _ => new UserGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
             services.AddSingleton( _ => new EventGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
             services.AddSingleton( _ => new WishListeGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
+            services.AddSingleton( _ => new CommentGateway( Configuration["ConnectionStrings:WeddingPlannerDB"] ) );
 
             services.AddSingleton<PasswordHasher>();
             services.AddSingleton<UserService>();
