@@ -10,7 +10,7 @@ namespace WeddingPlanner.DAL
 
         public string Task { get; set; }
 
-        public byte[] StateTask { get; set; }
+        public bool StateTask { get; set; }
     }
 }
 

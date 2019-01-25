@@ -2,10 +2,9 @@
     <section class="phot">
         <div class="container">
             <h1 class="jumbotron-heading">Bienvenue sur Wedding Organizer</h1>
-            <!-- <p class="lead text-muted">Cette application est réalisée à l'aide du framework Vue 2.</p> -->
-            <p>
+            <!-- <p>
                 <router-link class="btn btn-primary" to="/playground">Playground</router-link>                   
-            </p>
+            </p> -->
         </div>
     </section>
 </template>

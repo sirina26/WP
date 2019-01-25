@@ -10,42 +10,47 @@
 
 <script>
 import AuthService from '../services/AuthService'
-import Vue from 'vue'
+import {getUserTypeAsync} from'../api/UserApi'
+
 
 export default {
     data() {
         return {
-            endpoint: null
+            endpoint: null,
+            document: document.body,
+            type : true
         }
     },
 
-    mounted() {
+   async mounted() {
         AuthService.registerAuthenticatedCallback(() => this.onAuthenticated());
+        await this.test();
+
     },
 
-    beforeDestroy() {
+    async beforeDestroy() {
         AuthService.removeAuthenticatedCallback(() => this.onAuthenticated());
     },
 
     methods: {
-        login(provider) {
+       async login(provider) {
             AuthService.login(provider);
         },
 
-        onAuthenticated() {
+       async onAuthenticated() {
             this.$router.replace('/');
+        }, 
+        async test(){
+          
         }
     }
 }
 </script>
 
 <style lang="scss">
-
 body{
-    background-image: url("https://c.wallhere.com/photos/f7/c5/rings_wedding_love_patterns-675008.jpg!d");
     background-repeat: no-repeat;
     .button5 {border-radius: 50%;}
-
 }
 </style>
 

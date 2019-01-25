@@ -1,4 +1,4 @@
-create view weddingplanner.vComment
+create view weddingplanner.vProposition
 as
 select
     PropositionId = t.PropositionId,

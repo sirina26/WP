@@ -82,12 +82,12 @@ namespace WeddingPlanner.DAL
         }
 
 
-        public async Task<Result<int>> Create( string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)
+        public async Task<Result<int>> Create(int userId, string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)
         {
-
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
+                p.Add( "@userId", userId );
                 p.Add( "@eventName", eventName );
                 p.Add( "@place", place );
                 p.Add( "@weddingDate", weddingDate );
@@ -110,7 +110,7 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 var p = new DynamicParameters();
-                p.Add( "@EsventId", eventId );
+                p.Add( "@EventId", eventId );
                 p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "weddingplanner.sEventDelete", p, commandType: CommandType.StoredProcedure );
 
@@ -122,24 +122,23 @@ namespace WeddingPlanner.DAL
             }
         }
 
-        public async Task<Result> Update( int eventId, string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note, int customerId, int organizerId )
+        public async Task<Result> Update( int eventId, string eventName, string place, DateTime weddingDate, float maximumPrice, int numberOfGuestes, string note)//, int customerId, int organizerId )
         {
          
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                var p = new DynamicParameters();
-                p.Add( "@EventId", eventId );
-                p.Add( "@EventName", eventName );
-                p.Add( "@Place", place );
-                p.Add( "@WeddingDate", weddingDate );
-                p.Add( "@MaximumPrice", maximumPrice );
-                p.Add( "@NumberOfGuestes", numberOfGuestes );
-                p.Add( "@CustomerId", customerId );
-                p.Add( "@OrganizerId", organizerId );
-                p.Add( "@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
+                var p = new DynamicParameters();                
+                p.Add( "@eventId", eventId );
+                p.Add( "@eventName", eventName );
+                p.Add( "@place", place );
+                p.Add( "@weddingDate", weddingDate );
+                p.Add( "@maximumPrice", maximumPrice );
+                p.Add( "@numberOfGuestes", numberOfGuestes );
+                p.Add( "@note", note );
+                p.Add( "@status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue );
                 await con.ExecuteAsync( "weddingplanner.sEventUpdate", p, commandType: CommandType.StoredProcedure );
 
-                int status = p.Get<int>( "@Status" );
+                int status = p.Get<int>( "@status" );
                 if( status == 1 ) return Result.Failure( Status.NotFound, "Event not found." );
           
                 Debug.Assert( status == 0 );

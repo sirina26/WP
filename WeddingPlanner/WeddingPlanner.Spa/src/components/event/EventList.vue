@@ -4,22 +4,21 @@
             <h1>Gestion d'événement </h1>
 
             <div>
-                <router-link class="btn btn-primary" :to="`event/create`"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
+                <router-link class="btn btn-primary" :to="`./create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
             </div>
         </div>
 
         <table class="table table-striped table-hover table-bordered">
             <thead>
-                <tr>
+                <tr> 
                     <th>Nom</th>
                     <th>ID de Client</th>
-                    <th>ID de l'Organizateur</th>
                     <th>Endroit</th>
                     <th>Prix maximum </th>
                     <th>Date </th> 
                     <th>Nombre d'invités</th>
                     <th>Remarques</th>
-                    <th>Option</th>
+                    <th>Option</th>                    
                 </tr>
             </thead>
 
@@ -28,20 +27,20 @@
                     <td colspan="6" class="text-center">Il n'y a actuellement aucun event.</td>
                 </tr>
 
-                <tr v-for="i of paginatedData">
+                <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
-                    <td>{{ i.organizerId }}</td>
                     <td>{{ i.place }}</td>
                     <td>{{ i.maximumPrice }}</td>
-                    <td>{{ new Date(i.WeddingDate).toLocaleDateString() }}</td>
+                    <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
                     <td>{{ i.numberOfGuestes }}</td>
-                    <td>{{ i.note }}</td>
-                    <td>
-                        <router-link :to="`event/edit/${i.eventtId}`"><i class="fa fa-pencil"></i></router-link>
-                        <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-trash"></i></a>
-                        <a href="#" @click="deleteEvent(i.eventtId)"><i class="fa fa-comments-o"></i></a>
-                    </td>
+                    <td>{{ i.note }}</td>                     
+                    <td> 
+                        <a @click="deleteEvent(i.eventId)" v-if="i.customerId === id"><i class="fa fa-trash"></i></a>
+                        <router-link :to="`./comment/${i.eventId}`" v-if="type === true"><i class="fa fa-comments-o"></i></router-link>
+                        <router-link :to="`event/edit/${i.eventId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
+                    </td>  
+                  
                 </tr>
             </tbody>
         </table>
@@ -59,14 +58,17 @@
 </template>
 
 <script>
-    import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
+    import { getEventListAsync, deleteEventAsync, commentEventAsync } from '../../api/eventApi'
+    import AuthService from '../../services/AuthService'
+    import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
     export default {
         data() {
             return {
                 eventList:[],
-                pageNumber: 0
-
+                pageNumber: 0, 
+                id : 0,
+                type : true
             }
         },
         props:{
@@ -77,7 +79,25 @@
             }
         },
         async mounted() {
+           
             await this.refreshList();
+            this.id = await getUserIdAsync();     
+            this.type = await getUserTypeAsync();  
+             
+            if(this.mode == 'edit') {
+                try {
+                    const item = await getUserIdAsync(this.id);
+
+                    // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
+                    
+                    this.item = item;
+                }
+                catch(e) {
+                    console.error(e);
+                    this.$router.replace('/event');
+                }
+            }
+
         },
 
         methods: {
@@ -100,7 +120,8 @@
                     console.error(e);
                 }
             },
-             nextPage(){
+
+            nextPage(){
                  this.pageNumber++;
             },
             
@@ -110,6 +131,7 @@
         },
         computed:
         {
+            auth: () => AuthService,
             pageCount(){  
                 if(this.eventList !== "undefined")          
                 {
@@ -125,7 +147,6 @@
                 return this.eventList.slice(start, end);
             } 
         }  
-        
     }
 </script>
 
