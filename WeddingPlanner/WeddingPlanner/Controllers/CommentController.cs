@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
+using System.Data;
 
 namespace WeddingPlanner.WebApp.Controllers
 {
@@ -43,6 +44,7 @@ namespace WeddingPlanner.WebApp.Controllers
             int userId = int.Parse( User.Claims.ElementAt<Claim>( 0 ).Value );
             Result<int> result = await _commentGateway.Create( model.EventId,
                 userId, model.Proposition, DateTime.Now );
+            //( SqlDbType.DateTime2
             return this.CreateResult( result, o =>
             {
                 o.RouteName = "GetComment";

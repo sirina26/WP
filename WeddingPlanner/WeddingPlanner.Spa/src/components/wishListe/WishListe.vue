@@ -69,11 +69,6 @@
                 try {
                     this.wishList = await getWishListAsync();
                     this.id = await getUserIdAsync();
-                  
-                    console.log(this.wishList);
-                    console.log(this.wishListPerso);
-                    console.log(this.id);
-                    console.log( this.customerId);
                 }
                 catch(e) {
                     console.error(e);

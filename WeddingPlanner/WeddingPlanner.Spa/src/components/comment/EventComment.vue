@@ -40,6 +40,7 @@
             this.mode = this.$route.params.mode;
             this.eventid = this.$route.params.id;
             this.item.eventid = this.$route.params.id;
+
             if(this.mode == 'editComment') {
                 try {
                     const item = await getCommentAsync(this.commentid);

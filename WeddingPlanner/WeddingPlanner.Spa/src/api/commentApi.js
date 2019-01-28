@@ -6,6 +6,10 @@ export async function getCommentAsync(commentId){
     return await getAsync(`${endpoint}/${commentId}`);
 }
 
+export async function getCommentListAsync() {
+    return await getAsync(endpoint);
+}
+
 export async function createCommentAsync(model){
     return await postAsync(endpoint, model);
 }

@@ -18,7 +18,8 @@
                     <th>Date </th> 
                     <th>Nombre d'invités</th>
                     <th>Remarques</th>
-                    <th>Option</th>                    
+                    <th>Option</th>   
+                    <th>Commentaire</th>                 
                 </tr>
             </thead>
 
@@ -28,6 +29,8 @@
                 </tr>
 
                 <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
+                   
+                    
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.customerId }}</td>
                     <td>{{ i.place }}</td>
@@ -40,8 +43,15 @@
                         <router-link :to="`./comment/${i.eventId}`" v-if="type === true"><i class="fa fa-comments-o"></i></router-link>
                         <router-link :to="`event/edit/${i.eventId}`"  v-if="i.customerId === id"><i class="fa fa-pencil"></i></router-link>
                     </td>  
-                  
-                </tr>
+                    <ul>
+                        <li v-for="j in commentList" v-if="i.eventId==j.eventId">
+                            <!-- {{j.organizerId}} -->
+                            {{j.proposition}}<br>
+                            {{new Date(j.propositionDate).toLocaleDateString()}} à
+                            {{new Date(j.propositionDate).toLocaleTimeString()}}
+                        </li>
+                    </ul>
+                </tr>               
             </tbody>
         </table>
           <button 
@@ -58,7 +68,8 @@
 </template>
 
 <script>
-    import { getEventListAsync, deleteEventAsync, commentEventAsync } from '../../api/eventApi'
+    import { getEventListAsync, deleteEventAsync } from '../../api/eventApi'
+    import {getCommentListAsync} from '../../api/commentApi'
     import AuthService from '../../services/AuthService'
     import {getUserIdAsync, getUserTypeAsync} from'../../api/UserApi'
 
@@ -66,6 +77,7 @@
         data() {
             return {
                 eventList:[],
+                commentList:[],
                 pageNumber: 0, 
                 id : 0,
                 type : true
@@ -87,7 +99,7 @@
             if(this.mode == 'edit') {
                 try {
                     const item = await getUserIdAsync(this.id);
-
+                     
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
                     
                     this.item = item;
@@ -103,8 +115,12 @@
         methods: {
             
             async refreshList() {
-                try {
+                try {   
+                    this.commentList = await getCommentListAsync();
                     this.eventList = await getEventListAsync();
+                    // this.commentList.propositionDate = DateTime.fromISO(this.propositionDate).toFormat('yyyy-MM-dd'); 
+                    console.log(this.eventList);
+                    console.log(this.commentList.propositionDate);
                 }
                 catch(e) {
                     console.error(e);
