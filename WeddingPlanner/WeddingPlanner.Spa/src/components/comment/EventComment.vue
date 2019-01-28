@@ -64,10 +64,6 @@
 
                 var errors = [];
                 
-                // if(!this.item.WeddingDate) errors.push("Date de l'évènement")
-
-                // this.errors = errors;
-
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'editComment') {

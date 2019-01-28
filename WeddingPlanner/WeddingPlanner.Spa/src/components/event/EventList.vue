@@ -11,8 +11,8 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr> 
-                    <th>Nom</th>
-                    <th>ID de Client</th>
+                    <th>Nom de l'évènement</th>
+                    <th>Nom de Client</th>
                     <th>Endroit</th>
                     <th>Prix maximum </th>
                     <th>Date </th> 
@@ -32,7 +32,7 @@
                    
                     
                     <td>{{ i.eventName }}</td>
-                    <td>{{ i.customerId }}</td>
+                    <td>{{ i.firstName }}</td>
                     <td>{{ i.place }}</td>
                     <td>{{ i.maximumPrice }}</td>
                     <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
@@ -118,9 +118,8 @@
                 try {   
                     this.commentList = await getCommentListAsync();
                     this.eventList = await getEventListAsync();
-                    // this.commentList.propositionDate = DateTime.fromISO(this.propositionDate).toFormat('yyyy-MM-dd'); 
                     console.log(this.eventList);
-                    console.log(this.commentList.propositionDate);
+                    // console.log(this.commentList.propositionDate);
                 }
                 catch(e) {
                     console.error(e);

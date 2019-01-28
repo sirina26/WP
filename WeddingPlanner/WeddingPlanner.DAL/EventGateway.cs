@@ -22,7 +22,8 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<EventData>(
-                    @"select s.EventId,
+                    @"select
+                             s.EventId,e.FirstName,
                              s.CustomerId,
                              s.OrganizerId,
                              s.EventName,
@@ -31,7 +32,9 @@ namespace WeddingPlanner.DAL
                              s.NumberOfGuestes,
                              s.Note,
                              s.WeddingDate
-                      from weddingplanner.vEvent s;" );
+					FROM weddingplanner.vUsers e JOIN weddingplanner.vEvent s
+                    ON CustomerId = UserId 
+                    WHERE s.CustomerId = e.UserId;" );
             }
         }
 

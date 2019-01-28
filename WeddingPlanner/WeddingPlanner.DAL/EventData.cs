@@ -4,6 +4,8 @@ namespace WeddingPlanner.DAL
 {
     public class EventData
     {
+        public string FirstName { get; set; }
+
         public int EventId { get; set; }
 
         public int CustomerId { get; set; }

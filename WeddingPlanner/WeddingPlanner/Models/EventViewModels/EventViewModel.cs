@@ -4,6 +4,8 @@ namespace WeddingPlanner.WebApp.Models.EventViewModels
 {
     public class EventViewModel
     {
+        public string FirstName { get; set; }
+
         public float MaximumPrice { get; set; }
 
         public int EventId { get; set; }
