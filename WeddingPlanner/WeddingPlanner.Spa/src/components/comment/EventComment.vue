@@ -50,7 +50,8 @@
                 }
                 catch(e) {
                     console.error(e);
-                    this.$router.replace('./');
+                    debugger;
+                    this.$router.replace('/.');
                 }
             }
              console.log(this.item); 
@@ -59,7 +60,7 @@
 
         methods: {
             async onSubmit(event) {
-                event.preventDefault();
+            event.preventDefault();
             this.item.eventid = this.$route.params.id;
 
                 var errors = [];
@@ -67,14 +68,13 @@
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'editComment') {
-                            debugger;
                             await updateCommentAsync(this.item);
                         }
+
                         else {
-                            debugger;
                             await createCommentAsync(this.item);
                         }
-
+                        debugger;
                         this.$router.replace('./');
                     }
                     catch(e) {

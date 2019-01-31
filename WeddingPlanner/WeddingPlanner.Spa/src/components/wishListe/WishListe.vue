@@ -11,7 +11,7 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>Mon id</th>
+                    <th>Name</th>
                     <th>Tâche</th>
                     <th>Etat de tâche</th>
                     <th>Options</th>
@@ -24,7 +24,7 @@
                 </tr>
 
                 <tr v-if="id==i.customerId" v-for="i of wishList">
-                    <td>{{ i.customerId }}</td>
+                    <td>{{ i.firstName }}</td>
                     <td>{{ i.task }}</td>
                     <td v-if="i.stateTask == false">Pas faite</td>
                     <td v-else>Faite</td>

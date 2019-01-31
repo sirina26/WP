@@ -17,7 +17,7 @@ namespace WeddingPlanner.WebApp.Services
             var toAddress = new MailAddress( mailadress );
             const string fromPassword = "wed123456";
             string subject = object_mail;
-            string body = mail +" le lien est le http://localhost:8080/invitation";
+            string body = mail +" le lien est le http://localhost:8080";
 
             var smtp = new SmtpClient
             {

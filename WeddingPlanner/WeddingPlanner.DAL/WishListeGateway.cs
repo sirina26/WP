@@ -22,11 +22,15 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<WishListeData>(
-                    @"select s.TaskId,
+                    @"  select u.FirstName,
+							 s.TaskId,
                              s.CustomerId,
                              s.Task,
                              s.StateTask
-                      from weddingplanner.vWish s;" );
+                        from weddingplanner.vWish s
+                        join  weddingplanner.vUsers u
+					    on UserId = CustomerId
+					    where s.CustomerId = u.UserId;" );
             }
         }
 

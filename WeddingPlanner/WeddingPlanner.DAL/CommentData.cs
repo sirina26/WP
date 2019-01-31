@@ -2,8 +2,12 @@ using System;
 
 namespace WeddingPlanner.DAL
 {
-   public class CommentData
+    public class CommentData
     {
+        public string Email {get; set;}
+
+        public string FirstName { get; set; }
+
         public int PropositionId { get; set; }
 
         public int EventId { get; set; }

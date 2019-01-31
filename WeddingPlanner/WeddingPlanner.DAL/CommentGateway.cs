@@ -22,12 +22,18 @@ namespace WeddingPlanner.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 return await con.QueryAsync<CommentData>(
-                    @"select s.PropositionId,
+                    @" select
+                             u.FirstName,
+							 u.Email,                            
+							 s.PropositionId,
                              s.EventId,
                              s.OrganizerId,
                              s.Proposition,
                              s.PropositionDate                            
-                      from weddingplanner.vProposition s;" );
+                      from weddingplanner.vProposition s
+                      join weddingplanner.vUsers u
+					  on UserId = OrganizerId
+					  where s.OrganizerId = u.UserId;" );
             }
         }
 

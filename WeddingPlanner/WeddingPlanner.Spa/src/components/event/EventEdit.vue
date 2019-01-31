@@ -80,11 +80,19 @@
         },
 
         methods: {
-            async onSubmit(event) {
-                event.preventDefault();
+            async onSubmit(e) {
+                e.preventDefault();
 
                 var errors = [];
                 
+                if (isNaN(parseFloat(this.item.maximumPrice)))
+                    alert("Prix maximum n'est pas valide!");
+                          
+                if(!this.item.birthDate)
+                    errors.push("Date de naissance");
+      
+                this.errors = errors;
+
                 if(errors.length == 0) {
                     try {
                         if(this.mode == 'create') {

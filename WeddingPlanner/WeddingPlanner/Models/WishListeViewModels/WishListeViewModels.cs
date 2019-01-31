@@ -3,6 +3,8 @@ namespace WeddingPlanner.WebApp.Models.WishListeViewModels
 {
     public class WishListeViewModel
     {
+        public string FirstName { get; set; }
+
         public int TaskId { get; set; }
 
         public int CustomerId { get; set; }

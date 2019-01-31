@@ -2,13 +2,12 @@
     <div>
         <div class="mb-4 d-flex justify-content-between">
             <h1>Gestion d'événement </h1>
-
             <div>
                 <router-link class="btn btn-primary" :to="`./create`" v-if="type == false"><i class="fa fa-plus"></i> Ajouter un événement</router-link>
             </div>
         </div>
 
-        <table class="table table-striped table-hover table-bordered">
+        <table class="table-light table-striped table-hover table-bordered">
             <thead>
                 <tr> 
                     <th>Nom de l'évènement</th>
@@ -29,12 +28,11 @@
                 </tr>
 
                 <tr v-for="i of paginatedData" v-if="i.customerId!=0"> 
-                   
                     
                     <td>{{ i.eventName }}</td>
                     <td>{{ i.firstName }}</td>
                     <td>{{ i.place }}</td>
-                    <td>{{ i.maximumPrice }}</td>
+                    <td>{{ i.maximumPrice }}€</td>
                     <td>{{ new Date(i.weddingDate).toLocaleDateString() }}</td>
                     <td>{{ i.numberOfGuestes }}</td>
                     <td>{{ i.note }}</td>                     
@@ -45,10 +43,12 @@
                     </td>  
                     <ul>
                         <li v-for="j in commentList" v-if="i.eventId==j.eventId">
-                            <!-- {{j.organizerId}} -->
-                            {{j.proposition}}<br>
-                            {{new Date(j.propositionDate).toLocaleDateString()}} à
+                           <h5>{{j.firstName}}</h5>
+                            Email: {{j.email}}<br>
+                            Proposition: {{j.proposition}}<br>
+                            Date: {{new Date(j.propositionDate).toLocaleDateString()}} à
                             {{new Date(j.propositionDate).toLocaleTimeString()}}
+                            <br><br>
                         </li>
                     </ul>
                 </tr>               
@@ -57,12 +57,12 @@
           <button 
             :disabled="pageNumber === 0" 
             @click="prevPage">
-            Previous
+            Précédent
         </button>
         <button 
             :disabled="pageNumber > pageCount -1" 
             @click="nextPage">
-            Next
+            Suivant
         </button>
     </div>
 </template>
@@ -87,7 +87,7 @@
             size:{
             type:Number,
             required:false,
-            default: 7
+            default: 4
             }
         },
         async mounted() {
