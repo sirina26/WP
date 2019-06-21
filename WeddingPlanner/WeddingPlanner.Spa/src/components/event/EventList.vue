@@ -101,8 +101,8 @@
                     const item = await getUserIdAsync(this.id);
                      
                     // Here we transform the date, because the HTML date input expect format "yyyy-MM-dd"
-                    
                     this.item = item;
+
                 }
                 catch(e) {
                     console.error(e);
